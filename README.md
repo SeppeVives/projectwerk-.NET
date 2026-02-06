@@ -133,7 +133,7 @@ Het systeem is ontworpen met gebruiksgemak voor bezoekers én efficiëntie voor 
 ## 👨‍💻 Auteur
 
 Project ontwikkeld in het kader van het **.NET projectwerk**  
-Opleiding: Bachelor ICT 
+Opleiding: Bachelor ICT  
 School: VIVES-Kortrijk
 
 ---
