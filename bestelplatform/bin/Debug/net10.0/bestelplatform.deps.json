@@ -1,0 +1,23 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v10.0",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v10.0": {
+      "bestelplatform/1.0.0": {
+        "runtime": {
+          "bestelplatform.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "bestelplatform/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}
