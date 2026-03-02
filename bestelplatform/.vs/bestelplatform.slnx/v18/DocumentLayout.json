@@ -1,10 +1,10 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "C:\\Users\\seppe\\Documents\\Bachelor ICT 2025-2026\\semester 2\\Web Development\\bestelplatform\\",
+  "WorkspaceRootPath": "C:\\Users\\seppe\\Documents\\Bachelor ICT 2025-2026\\semester 2\\Web Development\\Project bestelplatform\\bestelplatform\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{A906BF3D-4224-41F4-947A-C9F0484F34CE}|bestelplatform.csproj|c:\\users\\seppe\\documents\\bachelor ict 2025-2026\\semester 2\\web development\\bestelplatform\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A906BF3D-4224-41F4-947A-C9F0484F34CE}|bestelplatform.csproj|solutionrelative:program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{CAF50EF3-9749-E65C-CE1E-F76C1B19E10F}|bestelplatform.csproj|c:\\users\\seppe\\documents\\bachelor ict 2025-2026\\semester 2\\web development\\project bestelplatform\\bestelplatform\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{CAF50EF3-9749-E65C-CE1E-F76C1B19E10F}|bestelplatform.csproj|solutionrelative:program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -20,11 +20,11 @@
               "$type": "Document",
               "DocumentIndex": 0,
               "Title": "Program.cs",
-              "DocumentMoniker": "C:\\Users\\seppe\\Documents\\Bachelor ICT 2025-2026\\semester 2\\Web Development\\bestelplatform\\Program.cs",
+              "DocumentMoniker": "C:\\Users\\seppe\\Documents\\Bachelor ICT 2025-2026\\semester 2\\Web Development\\Project bestelplatform\\bestelplatform\\Program.cs",
               "RelativeDocumentMoniker": "Program.cs",
-              "ToolTip": "C:\\Users\\seppe\\Documents\\Bachelor ICT 2025-2026\\semester 2\\Web Development\\bestelplatform\\Program.cs",
+              "ToolTip": "C:\\Users\\seppe\\Documents\\Bachelor ICT 2025-2026\\semester 2\\Web Development\\Project bestelplatform\\bestelplatform\\Program.cs",
               "RelativeToolTip": "Program.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-02-06T09:03:20.904Z",
               "EditorCaption": ""

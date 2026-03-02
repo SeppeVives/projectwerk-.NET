@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\seppe\\Documents\\Bachelor ICT 2025-2026\\semester 2\\Web Development\\bestelplatform\\bestelplatform.csproj": {}
+    "C:\\Users\\seppe\\Documents\\Bachelor ICT 2025-2026\\semester 2\\Web Development\\Project bestelplatform\\bestelplatform\\bestelplatform.csproj": {}
   },
   "projects": {
-    "C:\\Users\\seppe\\Documents\\Bachelor ICT 2025-2026\\semester 2\\Web Development\\bestelplatform\\bestelplatform.csproj": {
+    "C:\\Users\\seppe\\Documents\\Bachelor ICT 2025-2026\\semester 2\\Web Development\\Project bestelplatform\\bestelplatform\\bestelplatform.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\seppe\\Documents\\Bachelor ICT 2025-2026\\semester 2\\Web Development\\bestelplatform\\bestelplatform.csproj",
+        "projectUniqueName": "C:\\Users\\seppe\\Documents\\Bachelor ICT 2025-2026\\semester 2\\Web Development\\Project bestelplatform\\bestelplatform\\bestelplatform.csproj",
         "projectName": "bestelplatform",
-        "projectPath": "C:\\Users\\seppe\\Documents\\Bachelor ICT 2025-2026\\semester 2\\Web Development\\bestelplatform\\bestelplatform.csproj",
+        "projectPath": "C:\\Users\\seppe\\Documents\\Bachelor ICT 2025-2026\\semester 2\\Web Development\\Project bestelplatform\\bestelplatform\\bestelplatform.csproj",
         "packagesPath": "C:\\Users\\seppe\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\seppe\\Documents\\Bachelor ICT 2025-2026\\semester 2\\Web Development\\bestelplatform\\obj\\",
+        "outputPath": "C:\\Users\\seppe\\Documents\\Bachelor ICT 2025-2026\\semester 2\\Web Development\\Project bestelplatform\\bestelplatform\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -49,6 +49,22 @@
       "frameworks": {
         "net10.0": {
           "targetAlias": "net10.0",
+          "dependencies": {
+            "Microsoft.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[10.0.2, )"
+            },
+            "Microsoft.EntityFrameworkCore.Tools": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[10.0.2, )"
+            },
+            "MySql.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[10.0.1, )"
+            }
+          },
           "imports": [
             "net461",
             "net462",
