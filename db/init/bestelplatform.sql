@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: dotnet-bestelplatform-db
--- Gegenereerd op: 28 feb 2026 om 19:16
+-- Gegenereerd op: 02 mrt 2026 om 12:12
 -- Serverversie: 12.0.2-MariaDB-ubu2404
 -- PHP-versie: 8.2.29
 
@@ -24,6 +24,18 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
+-- Tabelstructuur voor tabel `bestellijn`
+--
+
+CREATE TABLE `bestellijn` (
+  `bestelling_id` int(11) NOT NULL,
+  `product_id` int(11) NOT NULL,
+  `hoeveelheid` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_uca1400_ai_ci;
+
+-- --------------------------------------------------------
+
+--
 -- Tabelstructuur voor tabel `bestellingen`
 --
 
@@ -31,7 +43,7 @@ CREATE TABLE `bestellingen` (
   `id` int(11) NOT NULL,
   `gebruiker_id` int(11) DEFAULT NULL,
   `tijdstip_besteld` datetime NOT NULL,
-  `status` enum('besteld','geleverd','klaar','geannuleerd') NOT NULL
+  `status` enum('geplaatst','geserveerd','klaar','geannuleerd') NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_uca1400_ai_ci;
 
 -- --------------------------------------------------------
@@ -142,6 +154,13 @@ CREATE TABLE `tafeltoewijzingen` (
 --
 
 --
+-- Indexen voor tabel `bestellijn`
+--
+ALTER TABLE `bestellijn`
+  ADD PRIMARY KEY (`bestelling_id`,`product_id`),
+  ADD KEY `product_id` (`product_id`);
+
+--
 -- Indexen voor tabel `bestellingen`
 --
 ALTER TABLE `bestellingen`
@@ -242,6 +261,13 @@ ALTER TABLE `tafels`
 --
 -- Beperkingen voor geëxporteerde tabellen
 --
+
+--
+-- Beperkingen voor tabel `bestellijn`
+--
+ALTER TABLE `bestellijn`
+  ADD CONSTRAINT `bestellijn_ibfk_1` FOREIGN KEY (`bestelling_id`) REFERENCES `bestellingen` (`id`),
+  ADD CONSTRAINT `bestellijn_ibfk_2` FOREIGN KEY (`product_id`) REFERENCES `producten` (`id`);
 
 --
 -- Beperkingen voor tabel `bestellingen`
