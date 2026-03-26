@@ -33,7 +33,6 @@ C:\Users\seppe\Documents\Bachelor ICT 2025-2026\semester 2\Web Development\Proje
 C:\Users\seppe\Documents\Bachelor ICT 2025-2026\semester 2\Web Development\Project bestelplatform\bestelplatform\obj\Debug\net10.0\bestelplatform.AssemblyInfoInputs.cache
 C:\Users\seppe\Documents\Bachelor ICT 2025-2026\semester 2\Web Development\Project bestelplatform\bestelplatform\obj\Debug\net10.0\bestelplatform.AssemblyInfo.cs
 C:\Users\seppe\Documents\Bachelor ICT 2025-2026\semester 2\Web Development\Project bestelplatform\bestelplatform\obj\Debug\net10.0\bestelplatform.csproj.CoreCompileInputs.cache
-C:\Users\seppe\Documents\Bachelor ICT 2025-2026\semester 2\Web Development\Project bestelplatform\bestelplatform\obj\Debug\net10.0\bestelplatform.MvcApplicationPartsAssemblyInfo.cache
 C:\Users\seppe\Documents\Bachelor ICT 2025-2026\semester 2\Web Development\Project bestelplatform\bestelplatform\obj\Debug\net10.0\bestelplatform.sourcelink.json
 C:\Users\seppe\Documents\Bachelor ICT 2025-2026\semester 2\Web Development\Project bestelplatform\bestelplatform\obj\Debug\net10.0\bestelplatform.dll
 C:\Users\seppe\Documents\Bachelor ICT 2025-2026\semester 2\Web Development\Project bestelplatform\bestelplatform\obj\Debug\net10.0\refint\bestelplatform.dll
@@ -163,3 +162,4 @@ C:\Users\seppe\Documents\Bachelor ICT 2025-2026\semester 2\Web Development\Proje
 C:\Users\seppe\Documents\Bachelor ICT 2025-2026\semester 2\Web Development\Project bestelplatform\bestelplatform\bin\Debug\net10.0\runtimes\win-x64\native\krb5_64.dll
 C:\Users\seppe\Documents\Bachelor ICT 2025-2026\semester 2\Web Development\Project bestelplatform\bestelplatform\bin\Debug\net10.0\runtimes\win-x64\native\krbcc64.dll
 C:\Users\seppe\Documents\Bachelor ICT 2025-2026\semester 2\Web Development\Project bestelplatform\bestelplatform\bin\Debug\net10.0\runtimes\win\lib\net8.0\System.Windows.Extensions.dll
+C:\Users\seppe\Documents\Bachelor ICT 2025-2026\semester 2\Web Development\Project bestelplatform\bestelplatform\bin\Debug\net10.0\bestelplatform.staticwebassets.runtime.json

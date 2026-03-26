@@ -89,6 +89,7 @@ public partial class BestelplatformContext : DbContext
                 .HasColumnType("enum('geplaatst','geserveerd','klaar','geannuleerd')")
                 .HasColumnName("status");
             entity.Property(e => e.TijdstipBesteld)
+                .HasDefaultValueSql("'current_timestamp()'")
                 .HasColumnType("datetime")
                 .HasColumnName("tijdstip_besteld");
 
@@ -187,6 +188,7 @@ public partial class BestelplatformContext : DbContext
             entity.HasIndex(e => e.ProductId, "product_id");
 
             entity.Property(e => e.Tijdstip)
+                .HasDefaultValueSql("'current_timestamp()'")
                 .HasColumnType("datetime")
                 .HasColumnName("tijdstip");
             entity.Property(e => e.ProductId)
@@ -260,6 +262,7 @@ public partial class BestelplatformContext : DbContext
                 .HasColumnType("int(11)")
                 .HasColumnName("tafel_id");
             entity.Property(e => e.TijdstipToegewezen)
+                .HasDefaultValueSql("'current_timestamp()'")
                 .HasColumnType("datetime")
                 .HasColumnName("tijdstip_toegewezen");
 
