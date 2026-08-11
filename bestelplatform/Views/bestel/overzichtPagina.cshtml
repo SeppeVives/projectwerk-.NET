@@ -1,0 +1,38 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+
+@model overzichtPaginaModel
+@{
+	ViewData["Title"] = "Overzicht bestel Pagina";
+	Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="text-center d-flex flex-column gap-3">
+	<label>Tafelnummer: @Model.Tafelnummer</label>
+	<label class="fw-bold">Overzicht</label>
+	<table class="table">
+		<tr>
+			<th>Product</th>
+			<th>Eenheidsprijs</th>
+			<th>Aantal</th>
+			<th>Subtotaal</th>
+		</tr>
+		@foreach (var productProperties in Model.BesteldProductProperties)
+		{
+			<tr>
+				<td>@productProperties.ProductNaam</td>
+				<td>€ @productProperties.Eenheidsprijs</td>
+				<td>@productProperties.Hoeveelheid</td>
+				<td>€ @productProperties.SubtotaalPrijs</td>
+			</tr>
+		}
+		<tr>
+			<th>Totaalbedrag:</th>
+			<td></td>
+			<td></td>
+			<th>€ @Model.TotaalPrijs</th>
+		</tr>
+	</table>
+</div>
+

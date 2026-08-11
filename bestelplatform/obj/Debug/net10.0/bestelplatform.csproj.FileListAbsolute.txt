@@ -164,9 +164,7 @@ C:\Users\seppe\Documents\Bachelor ICT 2025-2026\semester 2\Web Development\Proje
 C:\Users\seppe\Documents\Bachelor ICT 2025-2026\semester 2\Web Development\Project bestelplatform\bestelplatform\bin\Debug\net10.0\runtimes\win\lib\net8.0\System.Windows.Extensions.dll
 C:\Users\seppe\Documents\Bachelor ICT 2025-2026\semester 2\Web Development\Project bestelplatform\bestelplatform\bin\Debug\net10.0\bestelplatform.staticwebassets.runtime.json
 C:\Users\seppe\Documents\Bachelor ICT 2025-2026\semester 2\Web Development\Project bestelplatform\bestelplatform\obj\Debug\net10.0\staticwebassets.upToDateCheck.txt
-C:\Users\seppe\Documents\Bachelor ICT 2025-2026\semester 2\Web Development\Project bestelplatform\bestelplatform\obj\Debug\net10.0\compressed\ky47m7lzn2-{0}-b9sayid5wm-b9sayid5wm.gz
 C:\Users\seppe\Documents\Bachelor ICT 2025-2026\semester 2\Web Development\Project bestelplatform\bestelplatform\obj\Debug\net10.0\compressed\mb09gwxrb1-{0}-61n19gt1b8-61n19gt1b8.gz
-C:\Users\seppe\Documents\Bachelor ICT 2025-2026\semester 2\Web Development\Project bestelplatform\bestelplatform\obj\Debug\net10.0\compressed\7ykoegqscm-{0}-xtxxf3hu2r-xtxxf3hu2r.gz
 C:\Users\seppe\Documents\Bachelor ICT 2025-2026\semester 2\Web Development\Project bestelplatform\bestelplatform\obj\Debug\net10.0\compressed\o4ggpkutmc-{0}-t1cqhe9u97-t1cqhe9u97.gz
 C:\Users\seppe\Documents\Bachelor ICT 2025-2026\semester 2\Web Development\Project bestelplatform\bestelplatform\obj\Debug\net10.0\compressed\xrb8y944fa-{0}-c2jlpeoesf-c2jlpeoesf.gz
 C:\Users\seppe\Documents\Bachelor ICT 2025-2026\semester 2\Web Development\Project bestelplatform\bestelplatform\obj\Debug\net10.0\compressed\s67hjfsh6l-{0}-sejl45xvog-sejl45xvog.gz
@@ -233,3 +231,5 @@ C:\Users\seppe\Documents\Bachelor ICT 2025-2026\semester 2\Web Development\Proje
 C:\Users\seppe\Documents\Bachelor ICT 2025-2026\semester 2\Web Development\Project bestelplatform\bestelplatform\obj\Debug\net10.0\scopedcss\projectbundle\bestelplatform.bundle.scp.css
 C:\Users\seppe\Documents\Bachelor ICT 2025-2026\semester 2\Web Development\Project bestelplatform\bestelplatform\obj\Debug\net10.0\compressed\yizavsy5fi-{0}-csuaphz4db-csuaphz4db.gz
 C:\Users\seppe\Documents\Bachelor ICT 2025-2026\semester 2\Web Development\Project bestelplatform\bestelplatform\obj\Debug\net10.0\compressed\b33vsjrtca-{0}-csuaphz4db-csuaphz4db.gz
+C:\Users\seppe\Documents\Bachelor ICT 2025-2026\semester 2\Web Development\Project bestelplatform\bestelplatform\obj\Debug\net10.0\compressed\ky47m7lzn2-{0}-7r2jat41iq-7r2jat41iq.gz
+C:\Users\seppe\Documents\Bachelor ICT 2025-2026\semester 2\Web Development\Project bestelplatform\bestelplatform\obj\Debug\net10.0\compressed\7ykoegqscm-{0}-24lhlu6k32-24lhlu6k32.gz

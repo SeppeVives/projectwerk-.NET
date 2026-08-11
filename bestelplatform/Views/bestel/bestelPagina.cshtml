@@ -1,7 +1,39 @@
 ﻿@*
     For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 *@
+
+@model bestelPaginaViewModel
 @{
-    ViewData["Title"] = "Bestel Pagina";
-    Layout = "~/Views/Shared/_Layout.cshtml";
+	ViewData["Title"] = "Bestel Pagina";
+	Layout = "~/Views/Shared/_Layout.cshtml";
 }
+
+<div class="text-center">
+	<label class="h3">Tafelnummer: @Model.TafelNummer</label>
+	<form action="/bestel/overzicht/?tafelNummer=@Model.TafelNummer" method="post">
+		<div class="container text-center user-select-none">
+			<div class="row row-cols-2 border">
+				@for (int i = 0; i < Model.ProductNamen.Count; i++)
+				{
+					var productNaam = Model.ProductNamen[i];
+					var databaseID = Model.IDs[i];
+					var uniqueID = productNaam.Replace(" ", "");
+					<div class="col">
+						<div class="d-flex gap-3 align-content-center justify-content-between">
+							<div class="d-flex gap-3 align-items-center">
+								<label>@productNaam</label>
+								<i id="substract-@uniqueID" class="bi bi-dash-circle fs-3 text-danger" onclick="changeProductAmount('@uniqueID', -1)"></i>
+								<i id="add-@uniqueID" class="bi bi-plus-circle fs-3 text-success" onclick="changeProductAmount('@uniqueID', 1)"></i>
+							</div>
+							<input type="hidden" name="bestelInputs[@i].InputID" value="@databaseID" />
+							<input type="hidden" name="bestelInputs[@i].ProductName" value="@productNaam" />
+							<input class="form-control" style="width:80px; display:inline-block" id="amount-@uniqueID" value="0" name="bestelInputs[@i].Amount" min="0" type="number" oninput="this.value = Math.abs(this.value)">
+						</div>
+					</div>
+				}
+			</div>
+		</div>
+		<button class="btn btn-primary btn-lg text-center" type="submit">bestel</button>
+	</form>
+</div>
+<script src="~/js/site.js"></script>
