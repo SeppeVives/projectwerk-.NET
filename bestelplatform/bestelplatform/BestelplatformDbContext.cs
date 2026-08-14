@@ -1,0 +1,246 @@
+﻿using System;
+using System.Collections.Generic;
+using Microsoft.EntityFrameworkCore;
+
+namespace bestelplatform.bestelplatform;
+
+public partial class BestelplatformDbContext : DbContext
+{
+    public BestelplatformDbContext()
+    {
+    }
+
+    public BestelplatformDbContext(DbContextOptions<BestelplatformDbContext> options)
+        : base(options)
+    {
+    }
+
+    public virtual DbSet<Bestellijnen> Bestellijnens { get; set; }
+
+    public virtual DbSet<Bestellingen> Bestellingens { get; set; }
+
+    public virtual DbSet<Bezoeker> Bezoekers { get; set; }
+
+    public virtual DbSet<EfmigrationsHistory> EfmigrationsHistories { get; set; }
+
+    public virtual DbSet<Gebruiker> Gebruikers { get; set; }
+
+    public virtual DbSet<Medewerker> Medewerkers { get; set; }
+
+    public virtual DbSet<Productdetail> Productdetails { get; set; }
+
+    public virtual DbSet<Producten> Productens { get; set; }
+
+    public virtual DbSet<Rollen> Rollens { get; set; }
+
+    public virtual DbSet<Roltoewijzing> Roltoewijzings { get; set; }
+
+    public virtual DbSet<Tafel> Tafels { get; set; }
+
+    public virtual DbSet<Tafeltoewijzingen> Tafeltoewijzingens { get; set; }
+
+    protected override void OnModelCreating(ModelBuilder modelBuilder)
+    {
+        modelBuilder.Entity<Bestellijnen>(entity =>
+        {
+            entity.HasKey(e => new { e.BestellingId, e.ProductId }).HasName("PRIMARY");
+
+            entity.ToTable("bestellijnen");
+
+            entity.HasIndex(e => e.ProductId, "product_id");
+
+            entity.Property(e => e.BestellingId)
+                .HasColumnType("int(11)")
+                .HasColumnName("bestelling_id");
+            entity.Property(e => e.ProductId)
+                .HasColumnType("int(11)")
+                .HasColumnName("product_id");
+            entity.Property(e => e.Hoeveelheid)
+                .HasColumnType("int(11)")
+                .HasColumnName("hoeveelheid");
+        });
+
+        modelBuilder.Entity<Bestellingen>(entity =>
+        {
+            entity.HasKey(e => e.Id).HasName("PRIMARY");
+
+            entity.ToTable("bestellingen");
+
+            entity.HasIndex(e => e.GebruikerId, "gebruiker_id");
+
+            entity.Property(e => e.Id)
+                .HasColumnType("int(11)")
+                .HasColumnName("id");
+            entity.Property(e => e.GebruikerId)
+                .HasDefaultValueSql("'NULL'")
+                .HasColumnType("int(11)")
+                .HasColumnName("gebruiker_id");
+            entity.Property(e => e.Status)
+                .HasColumnType("enum('geplaatst','geserveerd','klaar','geannuleerd')")
+                .HasColumnName("status");
+            entity.Property(e => e.TijdstipBesteld)
+                .HasDefaultValueSql("'current_timestamp()'")
+                .HasColumnType("datetime")
+                .HasColumnName("tijdstip_besteld");
+        });
+
+        modelBuilder.Entity<Bezoeker>(entity =>
+        {
+            entity.HasKey(e => e.GebruikerId).HasName("PRIMARY");
+
+            entity.ToTable("bezoekers");
+
+            entity.Property(e => e.GebruikerId)
+                .HasColumnType("int(11)")
+                .HasColumnName("gebruiker_id");
+        });
+
+        modelBuilder.Entity<EfmigrationsHistory>(entity =>
+        {
+            entity.HasKey(e => e.MigrationId).HasName("PRIMARY");
+
+            entity.ToTable("__EFMigrationsHistory");
+
+            entity.Property(e => e.MigrationId).HasMaxLength(150);
+            entity.Property(e => e.ProductVersion).HasMaxLength(32);
+        });
+
+        modelBuilder.Entity<Gebruiker>(entity =>
+        {
+            entity.HasKey(e => e.Id).HasName("PRIMARY");
+
+            entity.ToTable("gebruikers");
+
+            entity.Property(e => e.Id)
+                .HasColumnType("int(11)")
+                .HasColumnName("id");
+            entity.Property(e => e.Geactiveerd)
+                .HasDefaultValueSql("'0'")
+                .HasColumnName("geactiveerd");
+            entity.Property(e => e.Naam)
+                .HasMaxLength(255)
+                .HasColumnName("naam");
+            entity.Property(e => e.UniekeCode)
+                .HasMaxLength(255)
+                .HasColumnName("unieke_code");
+            entity.Property(e => e.WachtwoordHash)
+                .HasMaxLength(255)
+                .IsFixedLength()
+                .HasColumnName("wachtwoord_hash");
+        });
+
+        modelBuilder.Entity<Medewerker>(entity =>
+        {
+            entity.HasKey(e => e.GebruikerId).HasName("PRIMARY");
+
+            entity.ToTable("medewerkers");
+
+            entity.Property(e => e.GebruikerId)
+                .HasColumnType("int(11)")
+                .HasColumnName("gebruiker_id");
+        });
+
+        modelBuilder.Entity<Productdetail>(entity =>
+        {
+            entity.HasKey(e => new { e.Tijdstip, e.ProductId }).HasName("PRIMARY");
+
+            entity.ToTable("productdetails");
+
+            entity.HasIndex(e => e.ProductId, "product_id");
+
+            entity.Property(e => e.Tijdstip)
+                .HasDefaultValueSql("'current_timestamp()'")
+                .HasColumnType("datetime")
+                .HasColumnName("tijdstip");
+            entity.Property(e => e.ProductId)
+                .HasColumnType("int(11)")
+                .HasColumnName("product_id");
+            entity.Property(e => e.Naam)
+                .HasMaxLength(255)
+                .HasColumnName("naam");
+            entity.Property(e => e.Prijs).HasColumnName("prijs");
+            entity.Property(e => e.Producttype)
+                .HasColumnType("enum('frisdrank','alcoholische_drank','warme_drank','dessert','voorgerecht','hoofdgerecht','versnapering')")
+                .HasColumnName("producttype");
+        });
+
+        modelBuilder.Entity<Producten>(entity =>
+        {
+            entity.HasKey(e => e.Id).HasName("PRIMARY");
+
+            entity.ToTable("producten");
+
+            entity.Property(e => e.Id)
+                .HasColumnType("int(11)")
+                .HasColumnName("id");
+        });
+
+        modelBuilder.Entity<Rollen>(entity =>
+        {
+            entity.HasKey(e => e.Id).HasName("PRIMARY");
+
+            entity.ToTable("rollen");
+
+            entity.Property(e => e.Id)
+                .HasColumnType("int(11)")
+                .HasColumnName("id");
+            entity.Property(e => e.Naam)
+                .HasMaxLength(255)
+                .HasColumnName("naam");
+        });
+
+        modelBuilder.Entity<Roltoewijzing>(entity =>
+        {
+            entity.HasKey(e => new { e.GebruikerId, e.RolId }).HasName("PRIMARY");
+
+            entity.ToTable("roltoewijzing");
+
+            entity.HasIndex(e => e.RolId, "rol_id");
+
+            entity.Property(e => e.GebruikerId)
+                .HasColumnType("int(11)")
+                .HasColumnName("gebruiker_id");
+            entity.Property(e => e.RolId)
+                .HasColumnType("int(11)")
+                .HasColumnName("rol_id");
+        });
+
+        modelBuilder.Entity<Tafel>(entity =>
+        {
+            entity.HasKey(e => e.Id).HasName("PRIMARY");
+
+            entity.ToTable("tafels");
+
+            entity.Property(e => e.Id)
+                .HasColumnType("int(11)")
+                .HasColumnName("id");
+            entity.Property(e => e.Nummer)
+                .HasColumnType("int(11)")
+                .HasColumnName("nummer");
+        });
+
+        modelBuilder.Entity<Tafeltoewijzingen>(entity =>
+        {
+            entity.HasKey(e => new { e.GebruikerId, e.TafelId, e.TijdstipToegewezen }).HasName("PRIMARY");
+
+            entity.ToTable("tafeltoewijzingen");
+
+            entity.HasIndex(e => e.TafelId, "tafel_id");
+
+            entity.Property(e => e.GebruikerId)
+                .HasColumnType("int(11)")
+                .HasColumnName("gebruiker_id");
+            entity.Property(e => e.TafelId)
+                .HasColumnType("int(11)")
+                .HasColumnName("tafel_id");
+            entity.Property(e => e.TijdstipToegewezen)
+                .HasDefaultValueSql("'current_timestamp()'")
+                .HasColumnType("datetime")
+                .HasColumnName("tijdstip_toegewezen");
+        });
+
+        OnModelCreatingPartial(modelBuilder);
+    }
+
+    partial void OnModelCreatingPartial(ModelBuilder modelBuilder);
+}

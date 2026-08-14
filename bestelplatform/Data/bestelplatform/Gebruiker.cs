@@ -9,7 +9,7 @@ public partial class Gebruiker
 
     public string Naam { get; set; } = null!;
 
-    public string WachtwoordHash { get; set; } = null!;
+    public string? WachtwoordHash { get; set; }
 
     public string UniekeCode { get; set; } = null!;
 

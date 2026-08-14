@@ -1,9 +1,10 @@
-﻿namespace bestelplatform.Models.Views
+﻿using bestelplatform.Controllers;
+
+namespace bestelplatform.Models.Views
 {
     public class bestelPaginaViewModel
     {
-        public int TafelNummer { get; set; }
-        public List<String> ProductNamen { get; set; } = [];
-        public List<int> IDs { get; set; } = [];
+        public int TableNumber { get; set; }
+        public List<ProductDetails> ProductDetails { get; set; } = [];
     }
 }

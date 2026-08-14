@@ -5,9 +5,9 @@ namespace bestelplatform.Models.Views
 {
     public class overzichtPaginaModel
     {
-        public int Tafelnummer { get; set; }
-        public List<BestelInputProperties> BestelInputProperties { get; set; }
-        public List<BesteldProductProperties> BesteldProductProperties { get; set; }
-        public float TotaalPrijs { get; set; }
+        public int TableNumber { get; set; }
+        public List<OrderInputProperties> ?BestelInputProperties { get; set; }
+        public List<OrderedProductProperties> ?BesteldProductProperties { get; set; }
+        public float TotalPrice { get; set; }
     }
 }

@@ -9,7 +9,7 @@
 }
 
 <div class="text-center d-flex flex-column gap-3">
-	<label>Tafelnummer: @Model.Tafelnummer</label>
+	<label class="h3">Tafelnummer: @Model.TableNumber</label>
 	<label class="fw-bold">Overzicht</label>
 	<table class="table">
 		<tr>
@@ -18,21 +18,25 @@
 			<th>Aantal</th>
 			<th>Subtotaal</th>
 		</tr>
-		@foreach (var productProperties in Model.BesteldProductProperties)
+		@foreach (var productProperties in Model.BesteldProductProperties!)
 		{
 			<tr>
-				<td>@productProperties.ProductNaam</td>
-				<td>€ @productProperties.Eenheidsprijs</td>
-				<td>@productProperties.Hoeveelheid</td>
-				<td>€ @productProperties.SubtotaalPrijs</td>
+				<td>@productProperties.ProductName</td>
+				<td>€ @productProperties.UnitPrice.ToString("F2")</td>
+				<td>@productProperties.Amount</td>
+				<td>€ @productProperties.SubtotalPrice.ToString("F2")</td>
 			</tr>
 		}
 		<tr>
 			<th>Totaalbedrag:</th>
 			<td></td>
 			<td></td>
-			<th>€ @Model.TotaalPrijs</th>
+			<th>€ @Model.TotalPrice.ToString("F2")</th>
 		</tr>
 	</table>
 </div>
-
+<form action="/bestel/betaling" method="post">
+	<input type="hidden" name="tableNumber" value="@Model.TableNumber"/>
+	<input type="hidden" name="totalPrice" value="@Model.TotalPrice" />
+	<button class="btn btn-primary btn-lg text-center fixed-bottom" type="submit">Afrekenen</button>
+</form>

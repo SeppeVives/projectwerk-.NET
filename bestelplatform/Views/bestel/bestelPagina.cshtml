@@ -9,31 +9,43 @@
 }
 
 <div class="text-center">
-	<label class="h3">Tafelnummer: @Model.TafelNummer</label>
-	<form action="/bestel/overzicht/?tafelNummer=@Model.TafelNummer" method="post">
-		<div class="container text-center user-select-none">
-			<div class="row row-cols-2 border">
-				@for (int i = 0; i < Model.ProductNamen.Count; i++)
+	<span class="h3">Tafelnummer: @Model.TableNumber</span>
+	<form action="/bestel/overzicht/?tafelNummer=@Model.TableNumber" method="post">
+		<div class="container text-center user-select-none"></div>
+		<div class="row row-cols-1 row-cols-md-2 border gy-3 pb-3 my-3">
+				@{
+					var productTypes = Model.ProductDetails.Select(row => row.ProductType).Distinct().OrderBy(x => x).ToList();
+				}
+				@foreach (var type in productTypes)
 				{
-					var productNaam = Model.ProductNamen[i];
-					var databaseID = Model.IDs[i];
-					var uniqueID = productNaam.Replace(" ", "");
-					<div class="col">
-						<div class="d-flex gap-3 align-content-center justify-content-between">
-							<div class="d-flex gap-3 align-items-center">
-								<label>@productNaam</label>
-								<i id="substract-@uniqueID" class="bi bi-dash-circle fs-3 text-danger" onclick="changeProductAmount('@uniqueID', -1)"></i>
-								<i id="add-@uniqueID" class="bi bi-plus-circle fs-3 text-success" onclick="changeProductAmount('@uniqueID', 1)"></i>
+					<div class="col col-lg-12 text-decoration-underline h4 text-start text-capitalize">@type.ToString().Replace("_", " ")</div>
+					@for (int i = 0; i < Model.ProductDetails.Count; i++)
+					{
+						if (Model.ProductDetails[i].ProductType == type)
+						{
+							var productdetail = Model.ProductDetails[i];
+							var productName = productdetail.ProductName;
+							var databaseID = productdetail.ProductID;
+							var productPrice = productdetail.ProductPrice;
+							var uniqueID = productName.Replace(" ", "");
+							<div class="col">
+								<div class="d-flex gap-3 justify-content-between">
+									<div class="d-flex gap-3 align-items-center">
+										<span>@productName</span>
+										<span>€ @productPrice.ToString("F2")</span>
+										<i class="bi bi-dash-circle fs-2 text-danger" role="button" name="subtract" onclick="changeProductAmount('@uniqueID', -1)"></i>
+										<i class="bi bi-plus-circle fs-2 text-success" role="button" name="add" onclick="changeProductAmount('@uniqueID', 1)"></i>
+									</div>
+									<input type="hidden" name="bestelInputs[@i].InputID" value="@databaseID" />
+									<input type="hidden" name="bestelInputs[@i].ProductName" value="@productName" />
+									<input class="form-control" style="width:80px; display:inline-block" id="amount-@uniqueID" value="0" name="bestelInputs[@i].Amount" min="0" type="number" oninput="this.value = Math.abs(this.value)">
+								</div>
 							</div>
-							<input type="hidden" name="bestelInputs[@i].InputID" value="@databaseID" />
-							<input type="hidden" name="bestelInputs[@i].ProductName" value="@productNaam" />
-							<input class="form-control" style="width:80px; display:inline-block" id="amount-@uniqueID" value="0" name="bestelInputs[@i].Amount" min="0" type="number" oninput="this.value = Math.abs(this.value)">
-						</div>
-					</div>
+						}
+					}
 				}
 			</div>
-		</div>
-		<button class="btn btn-primary btn-lg text-center" type="submit">bestel</button>
-	</form>
-</div>
-<script src="~/js/site.js"></script>
+			<button class="btn btn-primary btn-lg text-center fixed-bottom" type="submit">bestel</button>
+		</form>
+	</div>
+	<script src="~/js/site.js"></script>
