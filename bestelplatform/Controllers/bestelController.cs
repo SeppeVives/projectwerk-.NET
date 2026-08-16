@@ -5,9 +5,12 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Mollie.Api.Client;
 using Mollie.Api.Models;
+using Mollie.Api.Models.Payment;
 using Mollie.Api.Models.Payment.Request;
 using Mollie.Api.Models.Payment.Response;
 using Mollie.Api.Models.Profile.Response;
+using Mysqlx.Resultset;
+using Org.BouncyCastle.Asn1.Cms;
 using System.Diagnostics;
 using System.Net;
 
@@ -32,12 +35,18 @@ namespace bestelplatform.Controllers
             // Nieuwe gebruiker toevoegen en cookie aanmaken.
             string? cookieToken = Request.Cookies["UserCookie"];
             string? uniqueCode = null;
+            // tabelobjecten initialisatie
+            Bezoeker? newVisitor = null;
+            Tafeltoewijzingen? newTableAssignment = null;
             if (!String.IsNullOrEmpty(cookieToken))
             {
-                uniqueCode = await _bestelplatformContext.Gebruikers
+                var oldUser = await _bestelplatformContext.Gebruikers
                                     .Where(row => row.UniekeCode == cookieToken)
-                                    .Select(row => row.UniekeCode)
                                     .FirstOrDefaultAsync();
+                if (oldUser != null)
+                {
+                    uniqueCode = oldUser.UniekeCode;
+                }
             }
             if (string.IsNullOrEmpty(uniqueCode))
             {
@@ -48,11 +57,11 @@ namespace bestelplatform.Controllers
                     UniekeCode = uniqueCode,
                     Naam = userName
                 };
-                var newVisitor = new Bezoeker
+                newVisitor = new Bezoeker
                 {
                     Gebruiker = currentUser
                 };
-                
+
                 var cookieOptions = new CookieOptions
                 {
                     Expires = DateTime.UtcNow.AddHours(24),
@@ -60,23 +69,20 @@ namespace bestelplatform.Controllers
                     Secure = false, // Zet dit later op true wannneer je de app in the cloud host.
                     IsEssential = true
                 };
-
-                // Tabellen voor tafels invullen.
-                var newTable = new Tafel
-                {
-                    Nummer = tafelnummer
-                };
-                var newTableAssignment = new Tafeltoewijzingen
+                Response.Cookies.Append("UserCookie", uniqueCode, cookieOptions);
+                // Tabellen voor tafels invullen. Ook een nieuwe rij aanmaken bij tafelwisseling.
+                var currentTable = await _bestelplatformContext.Tafels
+                                  .Where(row => row.Nummer == tafelnummer)
+                                  .FirstOrDefaultAsync();
+                newTableAssignment = new Tafeltoewijzingen
                 {
                     Gebruiker = newVisitor,
-                    Tafel = newTable,
+                    Tafel = currentTable,
                     TijdstipToegewezen = DateTime.Now
                 };
                 _bestelplatformContext.Add(newTableAssignment);
                 await _bestelplatformContext.SaveChangesAsync();
-                Response.Cookies.Append("UserCookie", uniqueCode, cookieOptions);
             }
-
             // Model vullen met data uit productdetails.
             model.TableNumber = tafelnummer;
             var productDetailsData = await _bestelplatformContext.Productdetails
@@ -85,7 +91,7 @@ namespace bestelplatform.Controllers
                     ProductName = tabel.Naam,
                     ProductID = tabel.ProductId,
                     ProductPrice = tabel.Prijs,
-                    ProductType = tabel.Producttype
+                    ProductType = tabel.Producttype,
                 })
                 .ToListAsync();
             model.ProductDetails = productDetailsData;
@@ -116,33 +122,82 @@ namespace bestelplatform.Controllers
                         UnitPrice = unitPrice,
                         SubtotalPrice = subtotalPrice,
                         Amount = bestelInput.Amount,
-                        ProductName = bestelInput.ProductName
+                        ProductName = bestelInput.ProductName,
+                        ProductID = bestelInput.InputID
                     });
                     totaalPrijs += subtotalPrice;
                 }
             }
-            model.BestelInputProperties = bestelInputs;
-            model.BesteldProductProperties = orderedProductProperties;
+            model.OrderInputProperties = bestelInputs;
+            model.OrderedProductProperties = orderedProductProperties;
             model.TotalPrice = totaalPrijs;
             return View("overzichtPagina", model);
         }
         [HttpPost("betaling")]
-        public async Task<IActionResult> betaling(int tableNumber, float totalPrice)
+        public async Task<IActionResult> betaling(int tableNumber, float totalPrice, List<OrderedProductProperties> orderedProductProperties)
         {
+            // Huidige anonieme gebruiker ophalen met cookie.
+            string? cookieToken = Request.Cookies["UserCookie"];
+            // Record aanmaken voor bestellingen.
+            var activeUser = await _bestelplatformContext.Bezoekers
+                                      .Where(row => row.Gebruiker.UniekeCode == cookieToken)
+                                      .FirstOrDefaultAsync();
+            var newOrder = new Bestellingen
+            {
+                Gebruiker = activeUser,
+                TijdstipBesteld = DateTime.Now,
+                Status = "niet betaald"
+            };
+            _bestelplatformContext.Add(newOrder);
+            await _bestelplatformContext.SaveChangesAsync();
+            // Record aanmaken voor bestellijnen.
+            foreach (var orderedProduct in orderedProductProperties)
+            {
+                var newOrderLine = new Bestellijnen
+                {
+                    BestellingId = newOrder.Id,
+                    ProductId = orderedProduct.ProductID,
+                    Hoeveelheid = orderedProduct.Amount
+                };
+                _bestelplatformContext.Add(newOrderLine);
+            }
+            await _bestelplatformContext.SaveChangesAsync();
+            //Mollie testbetaling laden.
+            int orderID = newOrder.Id;
             using var paymentClient = new PaymentClient(_mollieApiKey);
             var paymentRequest = new PaymentRequest
             {
                 Amount = new Amount(Currency.EUR, totalPrice.ToString("F2", System.Globalization.CultureInfo.InvariantCulture)),
                 Description = $"Test ORW Wielewaal - Tafel {tableNumber}",
-                RedirectUrl = "http://localhost:5005/bestel/status"
+                RedirectUrl = $"http://localhost:5005/bestel/status",
             };
             PaymentResponse paymentResponse = await paymentClient.CreatePaymentAsync(paymentRequest);
+            var updateRequest = new PaymentUpdateRequest
+            {
+                RedirectUrl = $"http://localhost:5005/bestel/status?paymentid={paymentResponse.Id}"
+            };
+            await paymentClient.UpdatePaymentAsync(paymentResponse.Id, updateRequest);
             return Redirect(paymentResponse.Links.Checkout.Href);
         }
         [HttpGet("status")]
-        public async Task<IActionResult> status()
-        {
+        public async Task<IActionResult> status(string paymentid)
+        {  
+            // Na betaling de status van de bestelling aanpassen.
+            string? cookieToken = Request.Cookies["UserCookie"];
+            var bestelling = await _bestelplatformContext.Bestellingens
+                                   .Where(row => row.Gebruiker.Gebruiker.UniekeCode == cookieToken)
+                                   .OrderByDescending(row => row.TijdstipBesteld)
+                                   .FirstOrDefaultAsync();
+
+            using var paymentClient = new PaymentClient(_mollieApiKey);
+            PaymentResponse payment = await paymentClient.GetPaymentAsync(paymentid);
+            if (payment.Status == PaymentStatus.Paid)
+            {
+                bestelling.Status = "besteld";
+                await _bestelplatformContext.SaveChangesAsync();
+            }
             return View("statusPagina");
+            // De bestelling meegeven aan een model.
         }
     }
     public class ProductDetails
@@ -165,5 +220,6 @@ namespace bestelplatform.Controllers
         public float SubtotalPrice { get; set; }
         public int Amount { get; set; }
         public string ProductName { get; set; } = string.Empty;
+        public int ProductID { get; set; }
     }
 }

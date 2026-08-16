@@ -18,7 +18,7 @@
 			<th>Aantal</th>
 			<th>Subtotaal</th>
 		</tr>
-		@foreach (var productProperties in Model.BesteldProductProperties!)
+		@foreach (var productProperties in Model.OrderedProductProperties!)
 		{
 			<tr>
 				<td>@productProperties.ProductName</td>
@@ -36,7 +36,12 @@
 	</table>
 </div>
 <form action="/bestel/betaling" method="post">
-	<input type="hidden" name="tableNumber" value="@Model.TableNumber"/>
+	<input type="hidden" name="tableNumber" value="@Model.TableNumber" />
 	<input type="hidden" name="totalPrice" value="@Model.TotalPrice" />
+	@for (int i = 0; i < Model.OrderedProductProperties.Count(); i++)
+	{
+		<input type="hidden" name="orderedProductProperties[@i].ProductID" value="@Model.OrderedProductProperties[i].ProductID"/>
+		<input type="hidden" name="orderedProductProperties[@i].Amount" value="@Model.OrderedProductProperties[i].Amount" />
+	}
 	<button class="btn btn-primary btn-lg text-center fixed-bottom" type="submit">Afrekenen</button>
 </form>
