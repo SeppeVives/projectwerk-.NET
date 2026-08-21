@@ -13,6 +13,8 @@ public partial class Bestellingen
 
     public string Status { get; set; } = null!;
 
+    public string MolliePaymentid { get; set; } = null!;
+
     public virtual ICollection<Bestellijnen> Bestellijnens { get; set; } = new List<Bestellijnen>();
 
     public virtual Bezoeker? Gebruiker { get; set; }

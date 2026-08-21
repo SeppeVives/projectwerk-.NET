@@ -9,5 +9,5 @@ public partial class Rollen
 
     public string Naam { get; set; } = null!;
 
-    public virtual ICollection<Medewerker> Gebruikers { get; set; } = new List<Medewerker>();
+    public virtual ICollection<Gebruiker> Gebruikers { get; set; } = new List<Gebruiker>();
 }

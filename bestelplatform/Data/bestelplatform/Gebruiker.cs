@@ -18,4 +18,6 @@ public partial class Gebruiker
     public virtual Bezoeker? Bezoeker { get; set; }
 
     public virtual Medewerker? Medewerker { get; set; }
+
+    public virtual ICollection<Rollen> Rols { get; set; } = new List<Rollen>();
 }

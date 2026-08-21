@@ -6,7 +6,7 @@ var connectionString = builder.Configuration.GetConnectionString("DefaultConnect
 
 // Add services to the container.
 builder.Services
-    .AddDbContext<BestelplatformContext>(options => options.UseMySQL(connectionString))
+    .AddDbContext<BestelplatformDbContext>(options => options.UseMySQL(connectionString))
     .AddControllersWithViews();
 
 var app = builder.Build();

@@ -1,8 +1,58 @@
 [
   {
     "ContainingType": "bestelplatform.Controllers.APIcontroller",
-    "Method": "GetTest",
-    "RelativePath": "API/test",
+    "Method": "GetStatuses",
+    "RelativePath": "API/bezoeker/bestellingen/statussen",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "bestelplatform.Controllers.APIcontroller",
+    "Method": "getLeastOrderedDrinks",
+    "RelativePath": "API/history/orders/drink/least",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "bestelplatform.Controllers.APIcontroller",
+    "Method": "getMostOrderedDrinks",
+    "RelativePath": "API/history/orders/drink/most",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "bestelplatform.Controllers.APIcontroller",
+    "Method": "getMostOrderedSnack",
+    "RelativePath": "API/history/orders/snack/least",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "bestelplatform.Controllers.APIcontroller",
+    "Method": "getLeastOrderedSnack",
+    "RelativePath": "API/history/orders/snack/most",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "bestelplatform.Controllers.APIcontroller",
+    "Method": "getMostOrderedDrinksTable",
+    "RelativePath": "API/history/tables/orders/drinks/most",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,

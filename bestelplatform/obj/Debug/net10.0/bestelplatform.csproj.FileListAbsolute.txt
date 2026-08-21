@@ -232,8 +232,11 @@ C:\Users\seppe\Documents\Bachelor ICT 2025-2026\semester 2\Web Development\Proje
 C:\Users\seppe\Documents\Bachelor ICT 2025-2026\semester 2\Web Development\Project bestelplatform\bestelplatform\obj\Debug\net10.0\compressed\yizavsy5fi-{0}-csuaphz4db-csuaphz4db.gz
 C:\Users\seppe\Documents\Bachelor ICT 2025-2026\semester 2\Web Development\Project bestelplatform\bestelplatform\obj\Debug\net10.0\compressed\b33vsjrtca-{0}-csuaphz4db-csuaphz4db.gz
 C:\Users\seppe\Documents\Bachelor ICT 2025-2026\semester 2\Web Development\Project bestelplatform\bestelplatform\obj\Debug\net10.0\compressed\ky47m7lzn2-{0}-7r2jat41iq-7r2jat41iq.gz
-C:\Users\seppe\Documents\Bachelor ICT 2025-2026\semester 2\Web Development\Project bestelplatform\bestelplatform\obj\Debug\net10.0\compressed\7ykoegqscm-{0}-24lhlu6k32-24lhlu6k32.gz
 C:\Users\seppe\Documents\Bachelor ICT 2025-2026\semester 2\Web Development\Project bestelplatform\bestelplatform\bin\Debug\net10.0\Microsoft.Extensions.Http.Polly.dll
 C:\Users\seppe\Documents\Bachelor ICT 2025-2026\semester 2\Web Development\Project bestelplatform\bestelplatform\bin\Debug\net10.0\Mollie.Api.dll
 C:\Users\seppe\Documents\Bachelor ICT 2025-2026\semester 2\Web Development\Project bestelplatform\bestelplatform\bin\Debug\net10.0\Polly.dll
 C:\Users\seppe\Documents\Bachelor ICT 2025-2026\semester 2\Web Development\Project bestelplatform\bestelplatform\bin\Debug\net10.0\Polly.Extensions.Http.dll
+C:\Users\seppe\Documents\Bachelor ICT 2025-2026\semester 2\Web Development\Project bestelplatform\bestelplatform\obj\Debug\net10.0\compressed\epr25wj0nv-{0}-gtrzpdtud1-gtrzpdtud1.gz
+C:\Users\seppe\Documents\Bachelor ICT 2025-2026\semester 2\Web Development\Project bestelplatform\bestelplatform\obj\Debug\net10.0\compressed\vrtc1f26v6-{0}-iq2adbqerl-iq2adbqerl.gz
+C:\Users\seppe\Documents\Bachelor ICT 2025-2026\semester 2\Web Development\Project bestelplatform\bestelplatform\obj\Debug\net10.0\compressed\7ykoegqscm-{0}-3e3kbtbypl-3e3kbtbypl.gz
+C:\Users\seppe\Documents\Bachelor ICT 2025-2026\semester 2\Web Development\Project bestelplatform\bestelplatform\obj\Debug\net10.0\compressed\a3dnfnwe15-{0}-w020z5snpd-w020z5snpd.gz

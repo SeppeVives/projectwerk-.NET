@@ -13,43 +13,94 @@ using Mysqlx.Resultset;
 using Org.BouncyCastle.Asn1.Cms;
 using System.Diagnostics;
 using System.Net;
+using System.Text.Json;
 
 namespace bestelplatform.Controllers
 {
     [Route("[controller]")]
     public class bestelController : Controller
     {
-        private readonly BestelplatformContext _bestelplatformContext;
+        private readonly BestelplatformDbContext _bestelplatformContext;
         private readonly string _mollieApiKey;
 
-        public bestelController(BestelplatformContext bestelplatformContext, IConfiguration configuration)
+        public bestelController(BestelplatformDbContext bestelplatformContext, IConfiguration configuration)
         {
             _bestelplatformContext = bestelplatformContext;
             _mollieApiKey = configuration["Mollie:ApiKey"]!;
         }
+        private async Task<bool> checkIfUserExists(Bezoeker currentVisitor)
+        {
+            if (currentVisitor == null)
+            {
+                Response.Cookies.Delete("UserCookie");
+                return false;
+            }
+            return true;
+        }
 
         [HttpGet("")]
-        public async Task<IActionResult> Index(int tafelnummer = 0)
+        public async Task<IActionResult> index(int tafelnummer = 0)
         {
             var model = new bestelPaginaViewModel();
-            // Nieuwe gebruiker toevoegen en cookie aanmaken.
+            Tafeltoewijzingen? newTableAssignment = null;
             string? cookieToken = Request.Cookies["UserCookie"];
             string? uniqueCode = null;
-            // tabelobjecten initialisatie
             Bezoeker? newVisitor = null;
-            Tafeltoewijzingen? newTableAssignment = null;
             if (!String.IsNullOrEmpty(cookieToken))
             {
-                var oldUser = await _bestelplatformContext.Gebruikers
-                                    .Where(row => row.UniekeCode == cookieToken)
-                                    .FirstOrDefaultAsync();
-                if (oldUser != null)
+                var currentVisitor = await _bestelplatformContext.Bezoekers
+                                             .Where(row => row.Gebruiker.UniekeCode == cookieToken)
+                                             .FirstOrDefaultAsync();
+                if (!await checkIfUserExists(currentVisitor))
                 {
-                    uniqueCode = oldUser.UniekeCode;
+                    return RedirectToAction("Index", new { tafelnummer = tafelnummer });
+                }
+                var currentTable = await _bestelplatformContext.Tafeltoewijzingens
+                                    .Where(row => row.Gebruiker.Gebruiker.UniekeCode == cookieToken)
+                                    .OrderByDescending(row => row.TijdstipToegewezen)
+                                    .Select(row => row.Tafel.Nummer)
+                                    .FirstOrDefaultAsync();
+                // Als de gebruiker met cookie wilt veranderen van tafel.
+                if (tafelnummer == 0)
+                {
+                    tafelnummer = currentTable;
+                }
+                else
+                {
+                    if (currentTable != tafelnummer)
+                    {
+                        // Controleren of het een bestaande tafel is.
+                        var newTable = await _bestelplatformContext.Tafels
+                                             .FirstOrDefaultAsync(row => row.Nummer == tafelnummer);
+
+                        if (newTable != null)
+                        {
+                            newTableAssignment = new Tafeltoewijzingen
+                            {
+                                GebruikerId = currentVisitor.GebruikerId,
+                                Tafel = newTable,
+                                TijdstipToegewezen = DateTime.Now
+                            };
+                            _bestelplatformContext.Add(newTableAssignment);
+                            await _bestelplatformContext.SaveChangesAsync();
+                        }
+                        else
+                        {
+                            return View("foutPagina");
+                        }
+                    }
                 }
             }
-            if (string.IsNullOrEmpty(uniqueCode))
+            else
             {
+                // Allereerst een controle of er een QR-code gescand werd.
+                var currentTable = await _bestelplatformContext.Tafels
+                                      .Where(row => row.Nummer == tafelnummer)
+                                      .FirstOrDefaultAsync();
+                if (currentTable == null)
+                {
+                    return View("foutPagina");
+                }
                 uniqueCode = Guid.NewGuid().ToString();
                 string userName = $"bezoeker#{Guid.NewGuid().ToString().Substring(0, 4).ToUpper()}";
                 Gebruiker currentUser = new Gebruiker
@@ -61,6 +112,8 @@ namespace bestelplatform.Controllers
                 {
                     Gebruiker = currentUser
                 };
+                _bestelplatformContext.Bezoekers.Add(newVisitor);
+                await _bestelplatformContext.SaveChangesAsync();
 
                 var cookieOptions = new CookieOptions
                 {
@@ -71,9 +124,6 @@ namespace bestelplatform.Controllers
                 };
                 Response.Cookies.Append("UserCookie", uniqueCode, cookieOptions);
                 // Tabellen voor tafels invullen. Ook een nieuwe rij aanmaken bij tafelwisseling.
-                var currentTable = await _bestelplatformContext.Tafels
-                                  .Where(row => row.Nummer == tafelnummer)
-                                  .FirstOrDefaultAsync();
                 newTableAssignment = new Tafeltoewijzingen
                 {
                     Gebruiker = newVisitor,
@@ -91,18 +141,54 @@ namespace bestelplatform.Controllers
                     ProductName = tabel.Naam,
                     ProductID = tabel.ProductId,
                     ProductPrice = tabel.Prijs,
-                    ProductType = tabel.Producttype,
+                    ProductType = tabel.Producttype
                 })
                 .ToListAsync();
             model.ProductDetails = productDetailsData;
             return View("bestelpagina", model);
         }
 
-        [HttpPost("overzicht")]
-        public async Task<IActionResult> overzicht(List<OrderInputProperties> bestelInputs, int tafelNummer)
+        // Wanneer de bezoeker zomaar naar /bestel/overzicht zou surfen zonder httpPOST.
+        [HttpGet("overzicht")]
+        public async Task<IActionResult> overzicht()
         {
-            var model = new overzichtPaginaModel();
-            model.TableNumber = tafelNummer;
+            string? cookieToken = Request.Cookies["UserCookie"];
+            if (cookieToken == null)
+            {
+                return View("foutPagina");
+            }
+            else
+            {
+                var tableNumber = await _bestelplatformContext.Tafeltoewijzingens
+                                    .Where(row => row.Gebruiker.Gebruiker.UniekeCode == cookieToken)
+                                    .Select(row => row.Tafel.Nummer)
+                                    .FirstOrDefaultAsync();
+                return RedirectToAction("index", new { tafelnummer = tableNumber });
+            }
+        }
+
+        [HttpPost("overzicht")]
+        public async Task<IActionResult> overzicht(List<OrderInputProperties> bestelInputs)
+        {
+            string? cookieToken = Request.Cookies["UserCookie"];
+            if (cookieToken == null)
+            {
+                return View("foutPagina");
+            }
+            var tableNumber = await _bestelplatformContext.Tafeltoewijzingens
+                                      .Where(row => row.Gebruiker.Gebruiker.UniekeCode == cookieToken)
+                                      .OrderByDescending(row => row.TijdstipToegewezen)
+                                      .Select(row => row.Tafel.Nummer)
+                                      .FirstOrDefaultAsync();
+            var currentVisitor = await _bestelplatformContext.Bezoekers
+                                             .Where(row => row.Gebruiker.UniekeCode == cookieToken)
+                                             .FirstOrDefaultAsync();
+            if (!await checkIfUserExists(currentVisitor))
+            {
+                return View("foutpagina");
+            }
+            var model = new overzichtPaginaViewModel();
+            model.TableNumber = tableNumber;
             var productDetails = await _bestelplatformContext.Productdetails
                 .ToListAsync();
             var orderedProductProperties = new List<OrderedProductProperties>();
@@ -133,71 +219,159 @@ namespace bestelplatform.Controllers
             model.TotalPrice = totaalPrijs;
             return View("overzichtPagina", model);
         }
-        [HttpPost("betaling")]
-        public async Task<IActionResult> betaling(int tableNumber, float totalPrice, List<OrderedProductProperties> orderedProductProperties)
+
+        [HttpGet("betaling")]
+        public async Task<IActionResult> betaling()
         {
-            // Huidige anonieme gebruiker ophalen met cookie.
             string? cookieToken = Request.Cookies["UserCookie"];
-            // Record aanmaken voor bestellingen.
-            var activeUser = await _bestelplatformContext.Bezoekers
-                                      .Where(row => row.Gebruiker.UniekeCode == cookieToken)
-                                      .FirstOrDefaultAsync();
-            var newOrder = new Bestellingen
+            if (cookieToken == null)
             {
-                Gebruiker = activeUser,
-                TijdstipBesteld = DateTime.Now,
-                Status = "niet betaald"
-            };
-            _bestelplatformContext.Add(newOrder);
-            await _bestelplatformContext.SaveChangesAsync();
-            // Record aanmaken voor bestellijnen.
-            foreach (var orderedProduct in orderedProductProperties)
-            {
-                var newOrderLine = new Bestellijnen
-                {
-                    BestellingId = newOrder.Id,
-                    ProductId = orderedProduct.ProductID,
-                    Hoeveelheid = orderedProduct.Amount
-                };
-                _bestelplatformContext.Add(newOrderLine);
+                return View("foutPagina");
             }
-            await _bestelplatformContext.SaveChangesAsync();
+            else
+            {
+                var tableNumber = await _bestelplatformContext.Tafeltoewijzingens
+                                    .Where(row => row.Gebruiker.Gebruiker.UniekeCode == cookieToken)
+                                    .Select(row => row.Tafel.Nummer)
+                                    .FirstOrDefaultAsync();
+                return RedirectToAction("index", new { tafelnummer = tableNumber });
+            }
+        }
+
+        [HttpPost("betaling")]
+        public async Task<IActionResult> betaling(float totalPrice, List<OrderedProductProperties> orderedProductProperties)
+        {
+            string? cookieToken = Request.Cookies["UserCookie"];
+            if (cookieToken == null)
+            {
+                return View("foutPagina");
+            }
+            var tableNumber = await _bestelplatformContext.Tafeltoewijzingens
+                                   .Where(row => row.Gebruiker.Gebruiker.UniekeCode == cookieToken)
+                                   .Select(row => row.Tafel.Nummer)
+                                   .FirstOrDefaultAsync();
+            var currentVisitor = await _bestelplatformContext.Bezoekers
+                                             .Where(row => row.Gebruiker.UniekeCode == cookieToken)
+                                             .FirstOrDefaultAsync();
+            if (!await checkIfUserExists(currentVisitor))
+            {
+                return View("foutpagina");
+            }
             //Mollie testbetaling laden.
-            int orderID = newOrder.Id;
+            string orderedProductPropertiesJson = JsonSerializer.Serialize(orderedProductProperties);
             using var paymentClient = new PaymentClient(_mollieApiKey);
+            string huidigeBasisUrl = $"{Request.Scheme}://{Request.Host}";
             var paymentRequest = new PaymentRequest
             {
                 Amount = new Amount(Currency.EUR, totalPrice.ToString("F2", System.Globalization.CultureInfo.InvariantCulture)),
                 Description = $"Test ORW Wielewaal - Tafel {tableNumber}",
-                RedirectUrl = $"http://localhost:5005/bestel/status",
+                RedirectUrl = $"{huidigeBasisUrl}/bestel/status",
+                Metadata = orderedProductPropertiesJson
             };
             PaymentResponse paymentResponse = await paymentClient.CreatePaymentAsync(paymentRequest);
+            if (paymentResponse == null)
+            {
+                return RedirectToAction("index", new { tafelnummer = tableNumber });
+            }
             var updateRequest = new PaymentUpdateRequest
             {
-                RedirectUrl = $"http://localhost:5005/bestel/status?paymentid={paymentResponse.Id}"
+                RedirectUrl = $"{huidigeBasisUrl}/bestel/status?paymentid={paymentResponse.Id}"
             };
             await paymentClient.UpdatePaymentAsync(paymentResponse.Id, updateRequest);
-            return Redirect(paymentResponse.Links.Checkout.Href);
+            return Redirect(paymentResponse.Links!.Checkout!.Href);
         }
         [HttpGet("status")]
         public async Task<IActionResult> status(string paymentid)
-        {  
-            // Na betaling de status van de bestelling aanpassen.
+        {
             string? cookieToken = Request.Cookies["UserCookie"];
-            var bestelling = await _bestelplatformContext.Bestellingens
-                                   .Where(row => row.Gebruiker.Gebruiker.UniekeCode == cookieToken)
-                                   .OrderByDescending(row => row.TijdstipBesteld)
-                                   .FirstOrDefaultAsync();
-
-            using var paymentClient = new PaymentClient(_mollieApiKey);
-            PaymentResponse payment = await paymentClient.GetPaymentAsync(paymentid);
-            if (payment.Status == PaymentStatus.Paid)
+            if (cookieToken == null)
             {
-                bestelling.Status = "besteld";
-                await _bestelplatformContext.SaveChangesAsync();
+                return View("foutPagina");
             }
-            return View("statusPagina");
-            // De bestelling meegeven aan een model.
+            else
+            {
+                var model = new statusPaginaViewModel();
+                var visitorData = await _bestelplatformContext.Bezoekers
+                                        .Where(row => row.Gebruiker.UniekeCode == cookieToken)
+                                        .Select(row => new
+                                        {
+                                            latestTableNumber = row.Tafeltoewijzingens
+                                                                .OrderByDescending(row => row.TijdstipToegewezen)
+                                                                .Select(row => row.Tafel.Nummer)
+                                                                .FirstOrDefault(),
+                                            activeUser = row,
+                                            latestPaymentId = row.Bestellingens
+                                                              .OrderByDescending(row => row.TijdstipBesteld)
+                                                              .Select(row => row.MolliePaymentid)
+                                                              .FirstOrDefault()
+                                        })
+                                        .FirstOrDefaultAsync();
+                var currentVisitor = await _bestelplatformContext.Bezoekers
+                                             .Where(row => row.Gebruiker.UniekeCode == cookieToken)
+                                             .FirstOrDefaultAsync();
+                if (!await checkIfUserExists(currentVisitor))
+                {
+                    return View("foutpagina");
+                }
+                var latestPaymentid = visitorData.latestPaymentId;
+                if (latestPaymentid == null || latestPaymentid != paymentid)
+                {
+                    if (paymentid != null)
+                    {
+                        using var paymentClient = new PaymentClient(_mollieApiKey);
+                        PaymentResponse payment = await paymentClient.GetPaymentAsync(paymentid);
+                        if (payment.Status == PaymentStatus.Paid)
+                        {
+                            // Na betaling de tabellen bestellingen en bestellijnen invullen.
+                            // Record aanmaken voor bestellingen.
+                            var newOrder = new Bestellingen
+                            {
+                                Gebruiker = visitorData.activeUser,
+                                TijdstipBesteld = DateTime.Now,
+                                Status = "besteld",
+                                MolliePaymentid = paymentid
+                            };
+                            _bestelplatformContext.Add(newOrder);
+                            await _bestelplatformContext.SaveChangesAsync();
+                            // Record aanmaken voor bestellijnen.
+                            String jsonText = (string)payment.Metadata;
+                            List<OrderedProductProperties> orderedProductProperties = JsonSerializer.Deserialize<List<OrderedProductProperties>>(jsonText)!;
+                            foreach (var orderedProduct in orderedProductProperties)
+                            {
+                                var newOrderLine = new Bestellijnen
+                                {
+                                    BestellingId = newOrder.Id,
+                                    ProductId = orderedProduct.ProductID,
+                                    Hoeveelheid = orderedProduct.Amount
+                                };
+                                _bestelplatformContext.Add(newOrderLine);
+                            }
+                            await _bestelplatformContext.SaveChangesAsync();
+                        }
+                    }
+                }
+                // De bestelling meegeven aan een model.
+                model.TableNumber = visitorData.latestTableNumber;
+                model.orderDetails = await _bestelplatformContext.Bestellingens
+                                       .Where(row => row.Gebruiker.Gebruiker.UniekeCode == cookieToken)
+                                       .OrderByDescending(row => row.TijdstipBesteld)
+                                       .Select(row => new OrderDetails()
+                                       {
+                                           Status = row.Status,
+                                           orderedProductDetails = row.Bestellijnens
+                                                                   .Select(row => new OrderedProductsDetails
+                                                                   {
+                                                                       ProductName = row.Product.Productdetails
+                                                                                     .OrderByDescending(row => row.Tijdstip)
+                                                                                     .Select(row => row.Naam)
+                                                                                     .FirstOrDefault(),
+                                                                       Amount = row.Hoeveelheid
+                                                                   })
+                                                                   .ToList()
+                                       })
+                                       .ToListAsync();
+                return View("statusPagina", model);
+            }
         }
     }
     public class ProductDetails
@@ -205,7 +379,7 @@ namespace bestelplatform.Controllers
         public string ProductName { get; set; } = string.Empty;
         public int ProductID { get; set; }
         public float ProductPrice { get; set; }
-        public ProductEnum ProductType { get; set; }
+        public String? ProductType { get; set; }
 
     }
     public class OrderInputProperties
@@ -219,7 +393,7 @@ namespace bestelplatform.Controllers
         public float UnitPrice { get; set; }
         public float SubtotalPrice { get; set; }
         public int Amount { get; set; }
-        public string ProductName { get; set; } = string.Empty;
+        public string? ProductName { get; set; }
         public int ProductID { get; set; }
     }
 }

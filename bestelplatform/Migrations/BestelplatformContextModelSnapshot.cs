@@ -9,7 +9,7 @@ using bestelplatform.Data.bestelplatform;
 
 namespace bestelplatform.Migrations
 {
-    [DbContext(typeof(BestelplatformContext))]
+    [DbContext(typeof(BestelplatformDbContext))]
     partial class BestelplatformContextModelSnapshot : ModelSnapshot
     {
         protected override void BuildModel(ModelBuilder modelBuilder)

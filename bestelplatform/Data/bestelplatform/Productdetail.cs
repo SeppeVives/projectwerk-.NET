@@ -1,5 +1,4 @@
-﻿using bestelplatform.Models.Enums;
-using System;
+﻿using System;
 using System.Collections.Generic;
 
 namespace bestelplatform.Data.bestelplatform;
@@ -14,7 +13,5 @@ public partial class Productdetail
 
     public float Prijs { get; set; }
 
-    public ProductEnum Producttype { get; set; }
-
-    public virtual Producten Product { get; set; } = null!;
+    public string Producttype { get; set; } = null!;
 }

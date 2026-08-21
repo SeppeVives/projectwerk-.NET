@@ -1,7 +1,54 @@
 ﻿@*
     For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 *@
+
+@model statusPaginaViewModel
 @{
-    ViewData["Title"] = "status bestelling";
-    Layout = "~/Views/Shared/_Layout.cshtml";
+	ViewData["Title"] = "status bestelling";
+	Layout = "~/Views/Shared/_Layout.cshtml";
 }
+
+<div class="d-flex flex-column text-center gap-3">
+	<span class="h3">Tafelnummer: @Model.TableNumber</span>
+	@if (!Model.orderDetails.Any())
+	{
+		<span class="fw-bold">Nog geen bestellingen.</span>
+	}
+	else
+	{
+		var orderCounter = Model.orderDetails.Count();
+		<span class="fw-bold">@(orderCounter == 1 ? "Status van je bestelling:" : "Status van je bestellingen:")</span>
+		var bestellingen = Model.orderDetails;
+		for (int i = 0; i < bestellingen.Count; i++)
+		{
+			var orderedProductDetails = bestellingen[i].orderedProductDetails;
+			<div class="card border">
+				<div class="card-body">
+					<h5 class="card-title text-decoration-underline">Bestelling nummer @orderCounter</h5>
+					@{
+						orderCounter -= 1;
+					}
+					<div class="card-text">
+						<div class="d-flex flex-row justify-content-between">
+							<div name="orderedProductDetailsContainer">
+								<div class="row row-cols-2">
+									@foreach (var orderedProductDetail in orderedProductDetails)
+									{
+										<div class="col-auto">
+											@orderedProductDetail.Amount x
+										</div>
+										<div class="col-auto border-end">
+											@orderedProductDetail.ProductName
+										</div>
+									}
+								</div>
+							</div>
+							<div class="status-span">@bestellingen[i].Status</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		}
+	}
+</div>
+<script src="~/js/statusPagina.js"></script>
