@@ -1,58 +1,171 @@
 [
   {
-    "ContainingType": "bestelplatform.Controllers.APIcontroller",
+    "ContainingType": "bestelplatform.Controllers.AdmindashboardController",
+    "Method": "GebruiksBeheer",
+    "RelativePath": "admin",
+    "HttpMethod": "",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "bestelplatform.Controllers.AdmindashboardController",
+    "Method": "AddUserAndGenerateQRCode",
+    "RelativePath": "admin/add/user",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "bestelplatform.Controllers.AdmindashboardController",
+    "Method": "AddUserRole",
+    "RelativePath": "admin/add/user/role",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "rolePostBody",
+        "Type": "bestelplatform.Controllers.AdmindashboardController\u002BAddRolePostBody",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "bestelplatform.Controllers.AdmindashboardController",
+    "Method": "DeleteUserRole",
+    "RelativePath": "admin/delete/user/role",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "userId",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "roleName",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "bestelplatform.Controllers.AdmindashboardController",
+    "Method": "GebruiksBeheer",
+    "RelativePath": "admin/gebruiksbeheer",
+    "HttpMethod": "",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "bestelplatform.Controllers.AdmindashboardController",
+    "Method": "GetRoles",
+    "RelativePath": "admin/get/roles",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "bestelplatform.Controllers.AdmindashboardController",
+    "Method": "LoadUsers",
+    "RelativePath": "admin/load/users",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "bestelplatform.Controllers.AdmindashboardController",
+    "Method": "RemoveUser",
+    "RelativePath": "admin/remove/user",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "bestelplatform.Controllers.Api.APIcontroller",
+    "Method": "GetLeastOrderedDrinks",
+    "RelativePath": "API/history/ordered/drink/least",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "bestelplatform.Controllers.Api.APIcontroller",
+    "Method": "GetMostOrderedDrinks",
+    "RelativePath": "API/history/ordered/drink/most",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "bestelplatform.Controllers.Api.APIcontroller",
+    "Method": "GetMostOrderedSnack",
+    "RelativePath": "API/history/ordered/snack/least",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "bestelplatform.Controllers.Api.APIcontroller",
+    "Method": "GetLeastOrderedSnack",
+    "RelativePath": "API/history/ordered/snack/most",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "bestelplatform.Controllers.Api.APIcontroller",
+    "Method": "GetMostOrderedDrinksTable",
+    "RelativePath": "API/history/table/ordered/drinks/most",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "bestelplatform.Controllers.Api.APIcontroller",
+    "Method": "GetMostOrderedSnackTable",
+    "RelativePath": "API/history/table/ordered/snacks/most",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "bestelplatform.Controllers.Api.APIStatuscontroller",
     "Method": "GetStatuses",
-    "RelativePath": "API/bezoeker/bestellingen/statussen",
-    "HttpMethod": "GET",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [],
-    "ReturnTypes": []
-  },
-  {
-    "ContainingType": "bestelplatform.Controllers.APIcontroller",
-    "Method": "getLeastOrderedDrinks",
-    "RelativePath": "API/history/orders/drink/least",
-    "HttpMethod": "GET",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [],
-    "ReturnTypes": []
-  },
-  {
-    "ContainingType": "bestelplatform.Controllers.APIcontroller",
-    "Method": "getMostOrderedDrinks",
-    "RelativePath": "API/history/orders/drink/most",
-    "HttpMethod": "GET",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [],
-    "ReturnTypes": []
-  },
-  {
-    "ContainingType": "bestelplatform.Controllers.APIcontroller",
-    "Method": "getMostOrderedSnack",
-    "RelativePath": "API/history/orders/snack/least",
-    "HttpMethod": "GET",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [],
-    "ReturnTypes": []
-  },
-  {
-    "ContainingType": "bestelplatform.Controllers.APIcontroller",
-    "Method": "getLeastOrderedSnack",
-    "RelativePath": "API/history/orders/snack/most",
-    "HttpMethod": "GET",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [],
-    "ReturnTypes": []
-  },
-  {
-    "ContainingType": "bestelplatform.Controllers.APIcontroller",
-    "Method": "getMostOrderedDrinksTable",
-    "RelativePath": "API/history/tables/orders/drinks/most",
+    "RelativePath": "api/visitor/orders/statuses",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,

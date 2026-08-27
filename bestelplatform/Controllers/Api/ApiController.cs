@@ -5,7 +5,7 @@ using Org.BouncyCastle.Security;
 using System.Dynamic;
 using System.Net;
 
-namespace bestelplatform.Controllers
+namespace bestelplatform.Controllers.Api
 {
     [ApiController]
     [Route("[controller]")]
@@ -19,24 +19,8 @@ namespace bestelplatform.Controllers
             _bestelplatformContext = bestelplatformContext;
         }
 
-        [HttpGet("visitor/orders/statuses")]
-        public async Task<IActionResult> GetStatuses()
-        {
-            var cookieToken = Request.Cookies["UserCookie"];
-            if (cookieToken != null)
-            {
-                var visitorOrderStatus = await _bestelplatformContext.Bestellingens
-                                       .Where(row => row.Gebruiker.Gebruiker.UniekeCode == cookieToken)
-                                       .OrderByDescending(row => row.TijdstipBesteld)
-                                       .Select(row => row.Status)
-                                       .ToListAsync();
-                return Ok(visitorOrderStatus);
-            }
-            return NotFound();
-        }
-
         [HttpGet("history/ordered/drink/most")]
-        public async Task<IActionResult> getMostOrderedDrinks()
+        public async Task<IActionResult> GetMostOrderedDrinks()
         {
             var mostOrderedDrinks = await _bestelplatformContext.Bestellijnens
                                           .Select(line => new
@@ -65,7 +49,7 @@ namespace bestelplatform.Controllers
         }
 
         [HttpGet("history/ordered/drink/least")]
-        public async Task<IActionResult> getLeastOrderedDrinks()
+        public async Task<IActionResult> GetLeastOrderedDrinks()
         {
             var leastOrderedDrinks = await _bestelplatformContext.Bestellijnens
                                           .Select(line => new
@@ -94,7 +78,7 @@ namespace bestelplatform.Controllers
         }
 
         [HttpGet("history/ordered/snack/most")]
-        public async Task<IActionResult> getLeastOrderedSnack()
+        public async Task<IActionResult> GetLeastOrderedSnack()
         {
             var getMostOrderedSnack = await _bestelplatformContext.Bestellijnens
                                           .Select(line => new
@@ -123,7 +107,7 @@ namespace bestelplatform.Controllers
         }
 
         [HttpGet("history/ordered/snack/least")]
-        public async Task<IActionResult> getMostOrderedSnack()
+        public async Task<IActionResult> GetMostOrderedSnack()
         {
             var getLeastOrderedSnack = await _bestelplatformContext.Bestellijnens
                                           .Select(line => new
@@ -152,7 +136,7 @@ namespace bestelplatform.Controllers
         }
 
         [HttpGet("history/table/ordered/drinks/most")]
-        public async Task<IActionResult> getMostOrderedDrinksTable()
+        public async Task<IActionResult> GetMostOrderedDrinksTable()
         {
             var getMostOrderedDrinksTable = await _bestelplatformContext.Bestellijnens
                                                            .Select(line => new
@@ -190,7 +174,7 @@ namespace bestelplatform.Controllers
         }
 
         [HttpGet("history/table/ordered/snacks/most")]
-        public async Task<IActionResult> getMostOrderedSnackTable()
+        public async Task<IActionResult> GetMostOrderedSnackTable()
         {
             var getMostOrderedSnacksTable = await _bestelplatformContext.Bestellijnens
                                                            .Select(line => new

@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("bestelplatform")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+eff4db2f0f34d13a7b9fe4357cb5a81fcc4e6af3")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+298651a5a7d4aad6242516bc1deed5ded1982481")]
 [assembly: System.Reflection.AssemblyProductAttribute("bestelplatform")]
 [assembly: System.Reflection.AssemblyTitleAttribute("bestelplatform")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

@@ -1,0 +1,49 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+	ViewData["Title"] = "Gebruiksbeheerpagina";
+	Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+<div class="modal fade" id="addUserModal">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title">Gebruiker toevoegen</h5>
+				<button class="btn-close" data-bs-dismiss="modal"></button>
+			</div>
+			<div class="modal-body d-flex justify-content-center">
+				<a id="qrCodeLink">
+					<img id="qrCodeImage" />
+				</a>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div class="text-center d-flex flex-column gap-3">
+	<h3>Gebruiksbeheer</h3>
+	<div class="d-flex flex-row gap-1">
+		<div class="text-nowrap">
+			<button class="btn btn-primary d-flex gap-2 align-items-center py-0" id="addUserBtn" data-bs-toggle="modal" data-bs-target="#addUserModal">
+				<i class="bi bi-plus fs-2"></i>
+				<span class="fs-0">Nieuwe gebruiker toevoegen</span>
+			</button>
+		</div>
+		<button class="btn btn-success" onclick="loadUsers()"><i class="bi bi-arrow-clockwise"></i></button>
+	</div>
+	<table class="table">
+		<thead>
+			<tr>
+				<th class="col-1">Naam</th>
+				<th class="col-1">Geactiveerd</th>
+				<th class="col-2">Rol</th>
+				<th class="col-1"></th>
+			</tr>
+		</thead>
+		<tbody id="userTableContent">
+		</tbody>
+	</table>
+	<div class="fs-"></div>
+</div>
+<script src="~/js/adminDashboard.js"></script>

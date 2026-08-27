@@ -7,13 +7,13 @@ public partial class Gebruiker
 {
     public int Id { get; set; }
 
-    public string Naam { get; set; } = null!;
+    public string? Naam { get; set; } = null!;
 
     public string? WachtwoordHash { get; set; }
 
-    public string UniekeCode { get; set; } = null!;
+    public string? UniekeCode { get; set; } = null!;
 
-    public bool? Geactiveerd { get; set; }
+    public bool Geactiveerd { get; set; }
 
     public virtual Bezoeker? Bezoeker { get; set; }
 

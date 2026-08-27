@@ -7,5 +7,8 @@ public partial class Roltoewijzing
 {
     public int GebruikerId { get; set; }
 
-    public int RolId { get; set; }
+    public int? RolId { get; set; }
+
+    public virtual Gebruiker Gebruiker { get; set; } = null!;
+    public virtual Rollen Rollen { get; set; } = null!;
 }

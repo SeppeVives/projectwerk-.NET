@@ -1,6 +1,10 @@
-wwwroot\js\site.js
-wwwroot\favicon.ico
 wwwroot\css\site.css
+wwwroot\favicon.ico
+wwwroot\js\adminDashboard.js
+wwwroot\js\bestelPagina.js
+wwwroot\js\overzichtPagina.js
+wwwroot\js\site.js
+wwwroot\js\statusPagina.js
 wwwroot\lib\bootstrap\dist\css\bootstrap-grid.css
 wwwroot\lib\bootstrap\dist\css\bootstrap-grid.css.map
 wwwroot\lib\bootstrap\dist\css\bootstrap-grid.min.css
@@ -61,9 +65,6 @@ wwwroot\lib\jquery\dist\jquery.slim.js
 wwwroot\lib\jquery\dist\jquery.slim.min.js
 wwwroot\lib\jquery\dist\jquery.slim.min.map
 wwwroot\lib\jquery\LICENSE.txt
-wwwroot\js\bestelPagina.js
-wwwroot\js\statusPagina.js
-wwwroot\js\overzichtPagina.js
 C:\Users\seppe\Documents\Bachelor ICT 2025-2026\semester 2\Web Development\Project bestelplatform\bestelplatform\wwwroot\lib\jquery\LICENSE.txt
 C:\Users\seppe\Documents\Bachelor ICT 2025-2026\semester 2\Web Development\Project bestelplatform\bestelplatform\wwwroot\lib\jquery\dist\jquery.slim.min.map
 C:\Users\seppe\Documents\Bachelor ICT 2025-2026\semester 2\Web Development\Project bestelplatform\bestelplatform\wwwroot\lib\jquery\dist\jquery.slim.min.js
@@ -128,4 +129,5 @@ C:\Users\seppe\Documents\Bachelor ICT 2025-2026\semester 2\Web Development\Proje
 C:\Users\seppe\Documents\Bachelor ICT 2025-2026\semester 2\Web Development\Project bestelplatform\bestelplatform\wwwroot\js\bestelPagina.js
 C:\Users\seppe\Documents\Bachelor ICT 2025-2026\semester 2\Web Development\Project bestelplatform\bestelplatform\wwwroot\js\overzichtPagina.js
 C:\Users\seppe\Documents\Bachelor ICT 2025-2026\semester 2\Web Development\Project bestelplatform\bestelplatform\wwwroot\js\site.js
+C:\Users\seppe\Documents\Bachelor ICT 2025-2026\semester 2\Web Development\Project bestelplatform\bestelplatform\wwwroot\js\adminDashboard.js
 C:\Users\seppe\Documents\Bachelor ICT 2025-2026\semester 2\Web Development\Project bestelplatform\bestelplatform\wwwroot\js\statusPagina.js

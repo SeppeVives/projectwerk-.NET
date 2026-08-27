@@ -3,16 +3,36 @@
   "WorkspaceRootPath": "C:\\Users\\seppe\\Documents\\Bachelor ICT 2025-2026\\semester 2\\Web Development\\Project bestelplatform\\bestelplatform\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{CAF50EF3-9749-E65C-CE1E-F76C1B19E10F}|bestelplatform.csproj|c:\\users\\seppe\\documents\\bachelor ict 2025-2026\\semester 2\\web development\\project bestelplatform\\bestelplatform\\controllers\\apicontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{CAF50EF3-9749-E65C-CE1E-F76C1B19E10F}|bestelplatform.csproj|solutionrelative:controllers\\apicontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{CAF50EF3-9749-E65C-CE1E-F76C1B19E10F}|bestelplatform.csproj|c:\\users\\seppe\\documents\\bachelor ict 2025-2026\\semester 2\\web development\\project bestelplatform\\bestelplatform\\controllers\\registratiecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{CAF50EF3-9749-E65C-CE1E-F76C1B19E10F}|bestelplatform.csproj|solutionrelative:controllers\\registratiecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{CAF50EF3-9749-E65C-CE1E-F76C1B19E10F}|bestelplatform.csproj|c:\\users\\seppe\\documents\\bachelor ict 2025-2026\\semester 2\\web development\\project bestelplatform\\bestelplatform\\wwwroot\\js\\statuspagina.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
-      "RelativeMoniker": "D:0:0:{CAF50EF3-9749-E65C-CE1E-F76C1B19E10F}|bestelplatform.csproj|solutionrelative:wwwroot\\js\\statuspagina.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
+      "AbsoluteMoniker": "D:0:0:{CAF50EF3-9749-E65C-CE1E-F76C1B19E10F}|bestelplatform.csproj|c:\\users\\seppe\\documents\\bachelor ict 2025-2026\\semester 2\\web development\\project bestelplatform\\bestelplatform\\views\\shared\\_adminlayout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{CAF50EF3-9749-E65C-CE1E-F76C1B19E10F}|bestelplatform.csproj|solutionrelative:views\\shared\\_adminlayout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{CAF50EF3-9749-E65C-CE1E-F76C1B19E10F}|bestelplatform.csproj|c:\\users\\seppe\\documents\\bachelor ict 2025-2026\\semester 2\\web development\\project bestelplatform\\bestelplatform\\controllers\\admindashboardcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{CAF50EF3-9749-E65C-CE1E-F76C1B19E10F}|bestelplatform.csproj|solutionrelative:controllers\\admindashboardcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{CAF50EF3-9749-E65C-CE1E-F76C1B19E10F}|bestelplatform.csproj|c:\\users\\seppe\\documents\\bachelor ict 2025-2026\\semester 2\\web development\\project bestelplatform\\bestelplatform\\controllers\\logincontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{CAF50EF3-9749-E65C-CE1E-F76C1B19E10F}|bestelplatform.csproj|solutionrelative:controllers\\logincontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{CAF50EF3-9749-E65C-CE1E-F76C1B19E10F}|bestelplatform.csproj|c:\\users\\seppe\\documents\\bachelor ict 2025-2026\\semester 2\\web development\\project bestelplatform\\bestelplatform\\views\\registratie\\registratiepagina.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{CAF50EF3-9749-E65C-CE1E-F76C1B19E10F}|bestelplatform.csproj|solutionrelative:views\\registratie\\registratiepagina.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{CAF50EF3-9749-E65C-CE1E-F76C1B19E10F}|bestelplatform.csproj|c:\\users\\seppe\\documents\\bachelor ict 2025-2026\\semester 2\\web development\\project bestelplatform\\bestelplatform\\views\\login\\loginpagina.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{CAF50EF3-9749-E65C-CE1E-F76C1B19E10F}|bestelplatform.csproj|solutionrelative:views\\login\\loginpagina.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{CAF50EF3-9749-E65C-CE1E-F76C1B19E10F}|bestelplatform.csproj|c:\\users\\seppe\\documents\\bachelor ict 2025-2026\\semester 2\\web development\\project bestelplatform\\bestelplatform\\controllers\\bestelcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{CAF50EF3-9749-E65C-CE1E-F76C1B19E10F}|bestelplatform.csproj|solutionrelative:controllers\\bestelcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{CAF50EF3-9749-E65C-CE1E-F76C1B19E10F}|bestelplatform.csproj|c:\\users\\seppe\\documents\\bachelor ict 2025-2026\\semester 2\\web development\\project bestelplatform\\bestelplatform\\data\\bestelplatform\\gebruiker.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{CAF50EF3-9749-E65C-CE1E-F76C1B19E10F}|bestelplatform.csproj|solutionrelative:data\\bestelplatform\\gebruiker.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -22,45 +42,110 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 2,
+          "SelectedChildIndex": 4,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "bestelController.cs",
-              "DocumentMoniker": "C:\\Users\\seppe\\Documents\\Bachelor ICT 2025-2026\\semester 2\\Web Development\\Project bestelplatform\\bestelplatform\\Controllers\\bestelController.cs",
-              "RelativeDocumentMoniker": "Controllers\\bestelController.cs",
-              "ToolTip": "C:\\Users\\seppe\\Documents\\Bachelor ICT 2025-2026\\semester 2\\Web Development\\Project bestelplatform\\bestelplatform\\Controllers\\bestelController.cs",
-              "RelativeToolTip": "Controllers\\bestelController.cs",
-              "ViewState": "AgIAAAwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-08-21T19:06:30.669Z",
+              "DocumentIndex": 1,
+              "Title": "_AdminLayout.cshtml",
+              "DocumentMoniker": "C:\\Users\\seppe\\Documents\\Bachelor ICT 2025-2026\\semester 2\\Web Development\\Project bestelplatform\\bestelplatform\\Views\\Shared\\_AdminLayout.cshtml",
+              "RelativeDocumentMoniker": "Views\\Shared\\_AdminLayout.cshtml",
+              "ToolTip": "C:\\Users\\seppe\\Documents\\Bachelor ICT 2025-2026\\semester 2\\Web Development\\Project bestelplatform\\bestelplatform\\Views\\Shared\\_AdminLayout.cshtml",
+              "RelativeToolTip": "Views\\Shared\\_AdminLayout.cshtml",
+              "ViewState": "AgIAAAMAAAAAAAAAAAAAABgAAACAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-08-27T23:26:04.463Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "statusPagina.js",
-              "DocumentMoniker": "C:\\Users\\seppe\\Documents\\Bachelor ICT 2025-2026\\semester 2\\Web Development\\Project bestelplatform\\bestelplatform\\wwwroot\\js\\statusPagina.js",
-              "RelativeDocumentMoniker": "wwwroot\\js\\statusPagina.js",
-              "ToolTip": "C:\\Users\\seppe\\Documents\\Bachelor ICT 2025-2026\\semester 2\\Web Development\\Project bestelplatform\\bestelplatform\\wwwroot\\js\\statusPagina.js",
-              "RelativeToolTip": "wwwroot\\js\\statusPagina.js",
-              "ViewState": "AgIAAAMAAAAAAAAAAAAAAAgAAAALAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
-              "WhenOpened": "2026-08-21T00:53:58.137Z",
+              "DocumentIndex": 2,
+              "Title": "AdminDashboardController.cs",
+              "DocumentMoniker": "C:\\Users\\seppe\\Documents\\Bachelor ICT 2025-2026\\semester 2\\Web Development\\Project bestelplatform\\bestelplatform\\Controllers\\AdminDashboardController.cs",
+              "RelativeDocumentMoniker": "Controllers\\AdminDashboardController.cs",
+              "ToolTip": "C:\\Users\\seppe\\Documents\\Bachelor ICT 2025-2026\\semester 2\\Web Development\\Project bestelplatform\\bestelplatform\\Controllers\\AdminDashboardController.cs",
+              "RelativeToolTip": "Controllers\\AdminDashboardController.cs",
+              "ViewState": "AgIAAAYAAAAAAAAAAAAAABQAAAArAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-08-26T02:15:00.274Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "LoginPagina.cshtml",
+              "DocumentMoniker": "C:\\Users\\seppe\\Documents\\Bachelor ICT 2025-2026\\semester 2\\Web Development\\Project bestelplatform\\bestelplatform\\Views\\Login\\LoginPagina.cshtml",
+              "RelativeDocumentMoniker": "Views\\Login\\LoginPagina.cshtml",
+              "ToolTip": "C:\\Users\\seppe\\Documents\\Bachelor ICT 2025-2026\\semester 2\\Web Development\\Project bestelplatform\\bestelplatform\\Views\\Login\\LoginPagina.cshtml",
+              "RelativeToolTip": "Views\\Login\\LoginPagina.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAABCAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-08-27T15:09:11.367Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "RegistratiePagina.cshtml",
+              "DocumentMoniker": "C:\\Users\\seppe\\Documents\\Bachelor ICT 2025-2026\\semester 2\\Web Development\\Project bestelplatform\\bestelplatform\\Views\\Registratie\\RegistratiePagina.cshtml",
+              "RelativeDocumentMoniker": "Views\\Registratie\\RegistratiePagina.cshtml",
+              "ToolTip": "C:\\Users\\seppe\\Documents\\Bachelor ICT 2025-2026\\semester 2\\Web Development\\Project bestelplatform\\bestelplatform\\Views\\Registratie\\RegistratiePagina.cshtml",
+              "RelativeToolTip": "Views\\Registratie\\RegistratiePagina.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABkAAAAwAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-08-27T21:04:47.414Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "apiController.cs",
-              "DocumentMoniker": "C:\\Users\\seppe\\Documents\\Bachelor ICT 2025-2026\\semester 2\\Web Development\\Project bestelplatform\\bestelplatform\\Controllers\\apiController.cs",
-              "RelativeDocumentMoniker": "Controllers\\apiController.cs",
-              "ToolTip": "C:\\Users\\seppe\\Documents\\Bachelor ICT 2025-2026\\semester 2\\Web Development\\Project bestelplatform\\bestelplatform\\Controllers\\apiController.cs",
-              "RelativeToolTip": "Controllers\\apiController.cs",
-              "ViewState": "AgIAAJgAAAAAAAAAAAAuwK0AAAA9AAAAAAAAAA==",
+              "Title": "RegistratieController.cs",
+              "DocumentMoniker": "C:\\Users\\seppe\\Documents\\Bachelor ICT 2025-2026\\semester 2\\Web Development\\Project bestelplatform\\bestelplatform\\Controllers\\RegistratieController.cs",
+              "RelativeDocumentMoniker": "Controllers\\RegistratieController.cs",
+              "ToolTip": "C:\\Users\\seppe\\Documents\\Bachelor ICT 2025-2026\\semester 2\\Web Development\\Project bestelplatform\\bestelplatform\\Controllers\\RegistratieController.cs",
+              "RelativeToolTip": "Controllers\\RegistratieController.cs",
+              "ViewState": "AgIAAEEAAAAAAAAAAAAAAEEAAAAUAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-08-21T00:30:10.617Z",
+              "WhenOpened": "2026-08-27T21:00:44.616Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "LoginController.cs",
+              "DocumentMoniker": "C:\\Users\\seppe\\Documents\\Bachelor ICT 2025-2026\\semester 2\\Web Development\\Project bestelplatform\\bestelplatform\\Controllers\\LoginController.cs",
+              "RelativeDocumentMoniker": "Controllers\\LoginController.cs",
+              "ToolTip": "C:\\Users\\seppe\\Documents\\Bachelor ICT 2025-2026\\semester 2\\Web Development\\Project bestelplatform\\bestelplatform\\Controllers\\LoginController.cs",
+              "RelativeToolTip": "Controllers\\LoginController.cs",
+              "ViewState": "AgIAACkAAAAAAAAAAAAIwD8AAAANAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-08-27T14:50:31.609Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "BestelController.cs",
+              "DocumentMoniker": "C:\\Users\\seppe\\Documents\\Bachelor ICT 2025-2026\\semester 2\\Web Development\\Project bestelplatform\\bestelplatform\\Controllers\\BestelController.cs",
+              "RelativeDocumentMoniker": "Controllers\\BestelController.cs",
+              "ToolTip": "C:\\Users\\seppe\\Documents\\Bachelor ICT 2025-2026\\semester 2\\Web Development\\Project bestelplatform\\bestelplatform\\Controllers\\BestelController.cs",
+              "RelativeToolTip": "Controllers\\BestelController.cs",
+              "ViewState": "AgIAAA8AAAAAAAAAAAAAAAIAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-08-27T21:27:18.299Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "Gebruiker.cs",
+              "DocumentMoniker": "C:\\Users\\seppe\\Documents\\Bachelor ICT 2025-2026\\semester 2\\Web Development\\Project bestelplatform\\bestelplatform\\Data\\bestelplatform\\Gebruiker.cs",
+              "RelativeDocumentMoniker": "Data\\bestelplatform\\Gebruiker.cs",
+              "ToolTip": "C:\\Users\\seppe\\Documents\\Bachelor ICT 2025-2026\\semester 2\\Web Development\\Project bestelplatform\\bestelplatform\\Data\\bestelplatform\\Gebruiker.cs",
+              "RelativeToolTip": "Data\\bestelplatform\\Gebruiker.cs",
+              "ViewState": "AgIAAAMAAAAAAAAAAAAAAAsAAAASAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-08-27T16:09:59.546Z",
               "EditorCaption": ""
             }
           ]

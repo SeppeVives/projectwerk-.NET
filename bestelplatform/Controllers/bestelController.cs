@@ -28,7 +28,7 @@ namespace bestelplatform.Controllers
             _bestelplatformContext = bestelplatformContext;
             _mollieApiKey = configuration["Mollie:ApiKey"]!;
         }
-        private async Task<bool> checkIfUserExists(Bezoeker currentVisitor)
+        private async Task<bool> CheckIfUserExists(Bezoeker currentVisitor)
         {
             if (currentVisitor == null)
             {
@@ -39,7 +39,7 @@ namespace bestelplatform.Controllers
         }
 
         [HttpGet("")]
-        public async Task<IActionResult> index(int tafelnummer = 0)
+        public async Task<IActionResult> Index(int tafelnummer = 0)
         {
             var model = new bestelPaginaViewModel();
             Tafeltoewijzingen? newTableAssignment = null;
@@ -51,7 +51,7 @@ namespace bestelplatform.Controllers
                 var currentVisitor = await _bestelplatformContext.Bezoekers
                                              .Where(row => row.Gebruiker.UniekeCode == cookieToken)
                                              .FirstOrDefaultAsync();
-                if (!await checkIfUserExists(currentVisitor))
+                if (!await CheckIfUserExists(currentVisitor))
                 {
                     return RedirectToAction("Index", new { tafelnummer = tafelnummer });
                 }
@@ -86,7 +86,7 @@ namespace bestelplatform.Controllers
                         }
                         else
                         {
-                            return View("foutPagina");
+                            return View("FoutPagina");
                         }
                     }
                 }
@@ -99,7 +99,7 @@ namespace bestelplatform.Controllers
                                       .FirstOrDefaultAsync();
                 if (currentTable == null)
                 {
-                    return View("foutPagina");
+                    return View("FoutPagina");
                 }
                 uniqueCode = Guid.NewGuid().ToString();
                 string userName = $"bezoeker#{Guid.NewGuid().ToString().Substring(0, 4).ToUpper()}";
@@ -145,17 +145,17 @@ namespace bestelplatform.Controllers
                 })
                 .ToListAsync();
             model.ProductDetails = productDetailsData;
-            return View("bestelpagina", model);
+            return View("Bestelpagina", model);
         }
 
         // Wanneer de bezoeker zomaar naar /bestel/overzicht zou surfen zonder httpPOST.
         [HttpGet("overzicht")]
-        public async Task<IActionResult> overzicht()
+        public async Task<IActionResult> Overzicht()
         {
             string? cookieToken = Request.Cookies["UserCookie"];
             if (cookieToken == null)
             {
-                return View("foutPagina");
+                return View("FoutPagina");
             }
             else
             {
@@ -168,12 +168,12 @@ namespace bestelplatform.Controllers
         }
 
         [HttpPost("overzicht")]
-        public async Task<IActionResult> overzicht(List<OrderInputProperties> bestelInputs)
+        public async Task<IActionResult> Overzicht(List<OrderInputProperties> bestelInputs)
         {
             string? cookieToken = Request.Cookies["UserCookie"];
             if (cookieToken == null)
             {
-                return View("foutPagina");
+                return View("FoutPagina");
             }
             var tableNumber = await _bestelplatformContext.Tafeltoewijzingens
                                       .Where(row => row.Gebruiker.Gebruiker.UniekeCode == cookieToken)
@@ -183,9 +183,9 @@ namespace bestelplatform.Controllers
             var currentVisitor = await _bestelplatformContext.Bezoekers
                                              .Where(row => row.Gebruiker.UniekeCode == cookieToken)
                                              .FirstOrDefaultAsync();
-            if (!await checkIfUserExists(currentVisitor))
+            if (!await CheckIfUserExists(currentVisitor))
             {
-                return View("foutpagina");
+                return View("Foutpagina");
             }
             var model = new overzichtPaginaViewModel();
             model.TableNumber = tableNumber;
@@ -217,16 +217,16 @@ namespace bestelplatform.Controllers
             model.OrderInputProperties = bestelInputs;
             model.OrderedProductProperties = orderedProductProperties;
             model.TotalPrice = totaalPrijs;
-            return View("overzichtPagina", model);
+            return View("OverzichtPagina", model);
         }
 
         [HttpGet("betaling")]
-        public async Task<IActionResult> betaling()
+        public async Task<IActionResult> Betaling()
         {
             string? cookieToken = Request.Cookies["UserCookie"];
             if (cookieToken == null)
             {
-                return View("foutPagina");
+                return View("FoutPagina");
             }
             else
             {
@@ -239,12 +239,12 @@ namespace bestelplatform.Controllers
         }
 
         [HttpPost("betaling")]
-        public async Task<IActionResult> betaling(float totalPrice, List<OrderedProductProperties> orderedProductProperties)
+        public async Task<IActionResult> Betaling(float totalPrice, List<OrderedProductProperties> orderedProductProperties)
         {
             string? cookieToken = Request.Cookies["UserCookie"];
             if (cookieToken == null)
             {
-                return View("foutPagina");
+                return View("FoutPagina");
             }
             var tableNumber = await _bestelplatformContext.Tafeltoewijzingens
                                    .Where(row => row.Gebruiker.Gebruiker.UniekeCode == cookieToken)
@@ -253,9 +253,9 @@ namespace bestelplatform.Controllers
             var currentVisitor = await _bestelplatformContext.Bezoekers
                                              .Where(row => row.Gebruiker.UniekeCode == cookieToken)
                                              .FirstOrDefaultAsync();
-            if (!await checkIfUserExists(currentVisitor))
+            if (!await CheckIfUserExists(currentVisitor))
             {
-                return View("foutpagina");
+                return View("Foutpagina");
             }
             //Mollie testbetaling laden.
             string orderedProductPropertiesJson = JsonSerializer.Serialize(orderedProductProperties);
@@ -281,12 +281,12 @@ namespace bestelplatform.Controllers
             return Redirect(paymentResponse.Links!.Checkout!.Href);
         }
         [HttpGet("status")]
-        public async Task<IActionResult> status(string paymentid)
+        public async Task<IActionResult> Status(string paymentid)
         {
             string? cookieToken = Request.Cookies["UserCookie"];
             if (cookieToken == null)
             {
-                return View("foutPagina");
+                return View("FoutPagina");
             }
             else
             {
@@ -309,9 +309,9 @@ namespace bestelplatform.Controllers
                 var currentVisitor = await _bestelplatformContext.Bezoekers
                                              .Where(row => row.Gebruiker.UniekeCode == cookieToken)
                                              .FirstOrDefaultAsync();
-                if (!await checkIfUserExists(currentVisitor))
+                if (!await CheckIfUserExists(currentVisitor))
                 {
-                    return View("foutpagina");
+                    return View("Foutpagina");
                 }
                 var latestPaymentid = visitorData.latestPaymentId;
                 if (latestPaymentid == null || latestPaymentid != paymentid)
@@ -370,7 +370,7 @@ namespace bestelplatform.Controllers
                                                                    .ToList()
                                        })
                                        .ToListAsync();
-                return View("statusPagina", model);
+                return View("StatusPagina", model);
             }
         }
     }
