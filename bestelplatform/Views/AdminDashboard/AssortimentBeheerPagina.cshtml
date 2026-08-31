@@ -1,0 +1,86 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+	ViewData["Title"] = "AssortimentBeheer";
+	Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="modal fade" id="addProductModal">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title">Product toevoegen</h5>
+				<button class="btn-close" data-bs-dismiss="modal"></button>
+			</div>
+			<div class="modal-body d-flex justify-content-center">
+				<form id="addProductForm">
+					<label for="addNameInput" class="form-label">Naam</label>
+					<input id="addNameInput" class="form-control" required />
+					<label for="addPriceInput" class="form-label">Prijs</label>
+					<input id="addPriceInput" class="form-control" required />
+					<label for="addTypeSelect" class="form-label">Product type</label>
+					<select id="addTypeSelect" class="form-select mb-3" required>
+						<option></option>
+					</select>
+					<button class="btn btn-success" type="submit">
+						<i class="bi bi-plus"></i>
+						<span>Toevoegen</span>
+					</button>
+				</form>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div class="modal fade" id="editProductModal">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title">Product wijzigen</h5>
+				<button class="btn-close" data-bs-dismiss="modal"></button>
+			</div>
+			<div class="modal-body d-flex justify-content-center">
+				<form id="editProductForm">
+					<label for="editNameInput" class="form-label">Naam</label>
+					<input id="editNameInput" class="form-control" required />
+					<label for="editPriceInput" class="form-label">Prijs</label>
+					<input id="editPriceInput" class="form-control" required />
+					<label for="editTypeSelect" class="form-label">Product type</label>
+					<select id="editTypeSelect" class="form-select mb-3" required>
+					</select>
+					<button class="btn btn-warning" type="submit">
+						<i class="bi bi-gear"></i>
+						<span>Wijzigen</span>
+					</button>
+				</form>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div class="text-center d-flex flex-column gap-3">
+	<h3>Assortiment beheer</h3>
+	<div class="d-flex flex-row gap-1">
+		<div class="text-nowrap">
+			<button class="btn btn-primary d-flex gap-2 align-items-center py-0" id="addProductBtn" data-bs-toggle="modal" data-bs-target="#addProductModal">
+				<i class="bi bi-plus fs-2"></i>
+				<span class="fs-0">Nieuw product toevoegen</span>
+			</button>
+		</div>
+		<button class="btn btn-success" onclick="loadProducts()"><i class="bi bi-arrow-clockwise"></i></button>
+	</div>
+	<table class="table table-striped">
+		<thead>
+			<tr>
+				<th class="col-1">Naam</th>
+				<th class="col-1">Prijs</th>
+				<th class="col-2">Producttype</th>
+				<th class="col-1"></th>
+			</tr>
+		</thead>
+		<tbody id="userTableContent">
+		</tbody>
+	</table>
+</div>
+<script src="~/js/assortimentbeheer.js"></script>

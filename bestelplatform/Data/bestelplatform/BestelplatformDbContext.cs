@@ -37,9 +37,6 @@ public partial class BestelplatformDbContext : DbContext
 
     public virtual DbSet<Tafeltoewijzingen> Tafeltoewijzingens { get; set; }
 
-    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        => optionsBuilder.UseMySQL("Name=DefaultConnection");
-
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         modelBuilder.Entity<Bestellijnen>(entity =>
@@ -225,6 +222,7 @@ public partial class BestelplatformDbContext : DbContext
 
             entity.Property(e => e.Id)
                 .HasColumnType("int(11)")
+                .ValueGeneratedOnAdd()
                 .HasColumnName("id");
         });
 

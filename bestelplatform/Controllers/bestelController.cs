@@ -1,6 +1,7 @@
 ﻿using bestelplatform.Data.bestelplatform; // database
 using bestelplatform.Models.Enums;
 using bestelplatform.Models.Views;
+using bestelplatform.DTOs;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Mollie.Api.Client;
@@ -9,8 +10,6 @@ using Mollie.Api.Models.Payment;
 using Mollie.Api.Models.Payment.Request;
 using Mollie.Api.Models.Payment.Response;
 using Mollie.Api.Models.Profile.Response;
-using Mysqlx.Resultset;
-using Org.BouncyCastle.Asn1.Cms;
 using System.Diagnostics;
 using System.Net;
 using System.Text.Json;
@@ -136,7 +135,7 @@ namespace bestelplatform.Controllers
             // Model vullen met data uit productdetails.
             model.TableNumber = tafelnummer;
             var productDetailsData = await _bestelplatformContext.Productdetails
-                .Select(tabel => new ProductDetails
+                .Select(tabel => new ProductdetailsDto
                 {
                     ProductName = tabel.Naam,
                     ProductID = tabel.ProductId,
@@ -373,14 +372,6 @@ namespace bestelplatform.Controllers
                 return View("StatusPagina", model);
             }
         }
-    }
-    public class ProductDetails
-    {
-        public string ProductName { get; set; } = string.Empty;
-        public int ProductID { get; set; }
-        public float ProductPrice { get; set; }
-        public String? ProductType { get; set; }
-
     }
     public class OrderInputProperties
     {

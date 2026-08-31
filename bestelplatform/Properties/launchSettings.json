@@ -5,9 +5,7 @@
       "commandName": "Project",
       "dotnetRunMessages": true,
       "launchBrowser": false,
-      "applicationUrl": "http://0.0.0.0:5005",
-      "devTunnelEnabled": true,
-      "devTunnelAcces":  "public",
+      "applicationUrl": "http://192.168.0.125:5005",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       }
@@ -17,6 +15,8 @@
       "dotnetRunMessages": true,
       "launchBrowser": false,
       "applicationUrl": "https://localhost:7252;http://localhost:5005",
+      "devTunnelEnabled": true,
+      "devTunnelAcces": "public",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       }

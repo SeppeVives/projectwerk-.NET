@@ -58,13 +58,13 @@
               "target": "Package",
               "version": "[10.0.2, )"
             },
+            "Microting.EntityFrameworkCore.MySql": {
+              "target": "Package",
+              "version": "[10.0.11, )"
+            },
             "Mollie.Api": {
               "target": "Package",
               "version": "[4.20.0, )"
-            },
-            "MySql.EntityFrameworkCore": {
-              "target": "Package",
-              "version": "[10.0.1, )"
             },
             "QRCoder": {
               "target": "Package",

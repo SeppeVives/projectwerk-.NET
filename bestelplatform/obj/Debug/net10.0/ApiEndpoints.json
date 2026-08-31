@@ -11,6 +11,22 @@
   },
   {
     "ContainingType": "bestelplatform.Controllers.AdmindashboardController",
+    "Method": "AddProduct",
+    "RelativePath": "admin/add/product",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "product",
+        "Type": "bestelplatform.DTOs.ProductdetailsDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "bestelplatform.Controllers.AdmindashboardController",
     "Method": "AddUserAndGenerateQRCode",
     "RelativePath": "admin/add/user",
     "HttpMethod": "GET",
@@ -29,7 +45,33 @@
     "Parameters": [
       {
         "Name": "rolePostBody",
-        "Type": "bestelplatform.Controllers.AdmindashboardController\u002BAddRolePostBody",
+        "Type": "bestelplatform.Controllers.AdmindashboardController\u002BAddUserRolePostBody",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "bestelplatform.Controllers.AdmindashboardController",
+    "Method": "Assortimentbeheer",
+    "RelativePath": "admin/Assortimentbeheer",
+    "HttpMethod": "",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "bestelplatform.Controllers.AdmindashboardController",
+    "Method": "DeleteProduct",
+    "RelativePath": "admin/delete/product/{productID}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "productID",
+        "Type": "System.Int32",
         "IsRequired": true
       }
     ],
@@ -58,6 +100,22 @@
   },
   {
     "ContainingType": "bestelplatform.Controllers.AdmindashboardController",
+    "Method": "EditProduct",
+    "RelativePath": "admin/edit/product",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "updatedProduct",
+        "Type": "bestelplatform.DTOs.ProductdetailsDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "bestelplatform.Controllers.AdmindashboardController",
     "Method": "GebruiksBeheer",
     "RelativePath": "admin/gebruiksbeheer",
     "HttpMethod": "",
@@ -68,8 +126,28 @@
   },
   {
     "ContainingType": "bestelplatform.Controllers.AdmindashboardController",
+    "Method": "GetProductTypes",
+    "RelativePath": "admin/get/product/types",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "bestelplatform.Controllers.AdmindashboardController",
     "Method": "GetRoles",
     "RelativePath": "admin/get/roles",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "bestelplatform.Controllers.AdmindashboardController",
+    "Method": "LoadProducts",
+    "RelativePath": "admin/load/products",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,

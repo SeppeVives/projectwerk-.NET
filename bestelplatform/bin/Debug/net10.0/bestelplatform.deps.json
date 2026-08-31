@@ -9,28 +9,12 @@
       "bestelplatform/1.0.0": {
         "dependencies": {
           "Microsoft.EntityFrameworkCore.Tools": "10.0.2",
+          "Microting.EntityFrameworkCore.MySql": "10.0.11",
           "Mollie.Api": "4.20.0",
-          "MySql.EntityFrameworkCore": "10.0.1",
           "QRCoder": "1.8.0"
         },
         "runtime": {
           "bestelplatform.dll": {}
-        }
-      },
-      "BouncyCastle.Cryptography/2.6.2": {
-        "runtime": {
-          "lib/net6.0/BouncyCastle.Cryptography.dll": {
-            "assemblyVersion": "2.0.0.0",
-            "fileVersion": "2.6.2.46322"
-          }
-        }
-      },
-      "Google.Protobuf/3.32.0": {
-        "runtime": {
-          "lib/net5.0/Google.Protobuf.dll": {
-            "assemblyVersion": "3.32.0.0",
-            "fileVersion": "3.32.0.0"
-          }
         }
       },
       "Humanizer.Core/2.14.1": {
@@ -38,34 +22,6 @@
           "lib/net6.0/Humanizer.dll": {
             "assemblyVersion": "2.14.0.0",
             "fileVersion": "2.14.1.48190"
-          }
-        }
-      },
-      "K4os.Compression.LZ4/1.3.8": {
-        "runtime": {
-          "lib/net6.0/K4os.Compression.LZ4.dll": {
-            "assemblyVersion": "1.3.8.0",
-            "fileVersion": "1.3.8.0"
-          }
-        }
-      },
-      "K4os.Compression.LZ4.Streams/1.3.8": {
-        "dependencies": {
-          "K4os.Compression.LZ4": "1.3.8",
-          "K4os.Hash.xxHash": "1.0.8"
-        },
-        "runtime": {
-          "lib/net6.0/K4os.Compression.LZ4.Streams.dll": {
-            "assemblyVersion": "1.3.8.0",
-            "fileVersion": "1.3.8.0"
-          }
-        }
-      },
-      "K4os.Hash.xxHash/1.0.8": {
-        "runtime": {
-          "lib/net6.0/K4os.Hash.xxHash.dll": {
-            "assemblyVersion": "1.0.8.0",
-            "fileVersion": "1.0.8.0"
           }
         }
       },
@@ -349,22 +305,22 @@
           }
         }
       },
-      "Microsoft.EntityFrameworkCore/10.0.2": {
+      "Microsoft.EntityFrameworkCore/10.0.11": {
         "dependencies": {
-          "Microsoft.EntityFrameworkCore.Abstractions": "10.0.2"
+          "Microsoft.EntityFrameworkCore.Abstractions": "10.0.11"
         },
         "runtime": {
           "lib/net10.0/Microsoft.EntityFrameworkCore.dll": {
-            "assemblyVersion": "10.0.2.0",
-            "fileVersion": "10.0.225.61305"
+            "assemblyVersion": "10.0.11.0",
+            "fileVersion": "10.0.1126.37416"
           }
         }
       },
-      "Microsoft.EntityFrameworkCore.Abstractions/10.0.2": {
+      "Microsoft.EntityFrameworkCore.Abstractions/10.0.11": {
         "runtime": {
           "lib/net10.0/Microsoft.EntityFrameworkCore.Abstractions.dll": {
-            "assemblyVersion": "10.0.2.0",
-            "fileVersion": "10.0.225.61305"
+            "assemblyVersion": "10.0.11.0",
+            "fileVersion": "10.0.1126.37416"
           }
         }
       },
@@ -375,7 +331,7 @@
           "Microsoft.CodeAnalysis.CSharp": "5.0.0",
           "Microsoft.CodeAnalysis.CSharp.Workspaces": "5.0.0",
           "Microsoft.CodeAnalysis.Workspaces.MSBuild": "5.0.0",
-          "Microsoft.EntityFrameworkCore.Relational": "10.0.2",
+          "Microsoft.EntityFrameworkCore.Relational": "10.0.11",
           "Microsoft.Extensions.DependencyModel": "10.0.2",
           "Mono.TextTemplating": "3.0.0",
           "Newtonsoft.Json": "13.0.3"
@@ -387,14 +343,14 @@
           }
         }
       },
-      "Microsoft.EntityFrameworkCore.Relational/10.0.2": {
+      "Microsoft.EntityFrameworkCore.Relational/10.0.11": {
         "dependencies": {
-          "Microsoft.EntityFrameworkCore": "10.0.2"
+          "Microsoft.EntityFrameworkCore": "10.0.11"
         },
         "runtime": {
           "lib/net10.0/Microsoft.EntityFrameworkCore.Relational.dll": {
-            "assemblyVersion": "10.0.2.0",
-            "fileVersion": "10.0.225.61305"
+            "assemblyVersion": "10.0.11.0",
+            "fileVersion": "10.0.1126.37416"
           }
         }
       },
@@ -447,6 +403,18 @@
           }
         }
       },
+      "Microting.EntityFrameworkCore.MySql/10.0.11": {
+        "dependencies": {
+          "Microsoft.EntityFrameworkCore.Relational": "10.0.11",
+          "MySqlConnector": "2.6.2"
+        },
+        "runtime": {
+          "lib/net10.0/Microting.EntityFrameworkCore.MySql.dll": {
+            "assemblyVersion": "10.0.11.0",
+            "fileVersion": "10.0.11.0"
+          }
+        }
+      },
       "Mollie.Api/4.20.0": {
         "dependencies": {
           "Microsoft.Extensions.Http.Polly": "8.0.19"
@@ -469,59 +437,11 @@
           }
         }
       },
-      "MySql.Data/9.6.0": {
-        "dependencies": {
-          "BouncyCastle.Cryptography": "2.6.2",
-          "Google.Protobuf": "3.32.0",
-          "K4os.Compression.LZ4.Streams": "1.3.8",
-          "System.Configuration.ConfigurationManager": "8.0.0",
-          "System.Security.Permissions": "8.0.0",
-          "ZstdSharp.Port": "0.8.6"
-        },
+      "MySqlConnector/2.6.2": {
         "runtime": {
-          "lib/net10.0/MySql.Data.dll": {
-            "assemblyVersion": "9.6.0.0",
-            "fileVersion": "9.6.0.0"
-          }
-        },
-        "runtimeTargets": {
-          "runtimes/win-x64/native/comerr64.dll": {
-            "rid": "win-x64",
-            "assetType": "native",
-            "fileVersion": "4.3.0.1"
-          },
-          "runtimes/win-x64/native/gssapi64.dll": {
-            "rid": "win-x64",
-            "assetType": "native",
-            "fileVersion": "4.3.0.1"
-          },
-          "runtimes/win-x64/native/k5sprt64.dll": {
-            "rid": "win-x64",
-            "assetType": "native",
-            "fileVersion": "4.3.0.1"
-          },
-          "runtimes/win-x64/native/krb5_64.dll": {
-            "rid": "win-x64",
-            "assetType": "native",
-            "fileVersion": "4.3.0.1"
-          },
-          "runtimes/win-x64/native/krbcc64.dll": {
-            "rid": "win-x64",
-            "assetType": "native",
-            "fileVersion": "4.3.0.1"
-          }
-        }
-      },
-      "MySql.EntityFrameworkCore/10.0.1": {
-        "dependencies": {
-          "Microsoft.EntityFrameworkCore": "10.0.2",
-          "Microsoft.EntityFrameworkCore.Relational": "10.0.2",
-          "MySql.Data": "9.6.0"
-        },
-        "runtime": {
-          "lib/net10.0/MySql.EntityFrameworkCore.dll": {
-            "assemblyVersion": "9.6.0.0",
-            "fileVersion": "9.6.0.0"
+          "lib/net10.0/MySqlConnector.dll": {
+            "assemblyVersion": "2.0.0.0",
+            "fileVersion": "2.6.2.0"
           }
         }
       },
@@ -631,17 +551,6 @@
           }
         }
       },
-      "System.Configuration.ConfigurationManager/8.0.0": {
-        "dependencies": {
-          "System.Security.Cryptography.ProtectedData": "8.0.0"
-        },
-        "runtime": {
-          "lib/net8.0/System.Configuration.ConfigurationManager.dll": {
-            "assemblyVersion": "8.0.0.0",
-            "fileVersion": "8.0.23.53103"
-          }
-        }
-      },
       "System.Drawing.Common/6.0.0": {
         "dependencies": {
           "Microsoft.Win32.SystemEvents": "6.0.0"
@@ -666,49 +575,6 @@
             "fileVersion": "6.0.21.52210"
           }
         }
-      },
-      "System.Security.Cryptography.ProtectedData/8.0.0": {
-        "runtime": {
-          "lib/net8.0/System.Security.Cryptography.ProtectedData.dll": {
-            "assemblyVersion": "8.0.0.0",
-            "fileVersion": "8.0.23.53103"
-          }
-        }
-      },
-      "System.Security.Permissions/8.0.0": {
-        "dependencies": {
-          "System.Windows.Extensions": "8.0.0"
-        },
-        "runtime": {
-          "lib/net8.0/System.Security.Permissions.dll": {
-            "assemblyVersion": "8.0.0.0",
-            "fileVersion": "8.0.23.53103"
-          }
-        }
-      },
-      "System.Windows.Extensions/8.0.0": {
-        "runtime": {
-          "lib/net8.0/System.Windows.Extensions.dll": {
-            "assemblyVersion": "8.0.0.0",
-            "fileVersion": "8.0.23.53103"
-          }
-        },
-        "runtimeTargets": {
-          "runtimes/win/lib/net8.0/System.Windows.Extensions.dll": {
-            "rid": "win",
-            "assetType": "runtime",
-            "assemblyVersion": "8.0.0.0",
-            "fileVersion": "8.0.23.53103"
-          }
-        }
-      },
-      "ZstdSharp.Port/0.8.6": {
-        "runtime": {
-          "lib/net9.0/ZstdSharp.dll": {
-            "assemblyVersion": "0.8.6.0",
-            "fileVersion": "0.8.6.0"
-          }
-        }
       }
     }
   },
@@ -718,47 +584,12 @@
       "serviceable": false,
       "sha512": ""
     },
-    "BouncyCastle.Cryptography/2.6.2": {
-      "type": "package",
-      "serviceable": true,
-      "sha512": "sha512-7oWOcvnntmMKNzDLsdxAYqApt+AjpRpP2CShjMfIa3umZ42UQMvH0tl1qAliYPNYO6vTdcGMqnRrCPmsfzTI1w==",
-      "path": "bouncycastle.cryptography/2.6.2",
-      "hashPath": "bouncycastle.cryptography.2.6.2.nupkg.sha512"
-    },
-    "Google.Protobuf/3.32.0": {
-      "type": "package",
-      "serviceable": true,
-      "sha512": "sha512-fsKxV5bhcvXmZi+cUo5+IxzRMBHwHeFO8G5utNa9f+Mu37kmfy8JcUVvWPt4cX7EuQWAjjHUjZqVl7nGSTRHRg==",
-      "path": "google.protobuf/3.32.0",
-      "hashPath": "google.protobuf.3.32.0.nupkg.sha512"
-    },
     "Humanizer.Core/2.14.1": {
       "type": "package",
       "serviceable": true,
       "sha512": "sha512-lQKvtaTDOXnoVJ20ibTuSIOf2i0uO0MPbDhd1jm238I+U/2ZnRENj0cktKZhtchBMtCUSRQ5v4xBCUbKNmyVMw==",
       "path": "humanizer.core/2.14.1",
       "hashPath": "humanizer.core.2.14.1.nupkg.sha512"
-    },
-    "K4os.Compression.LZ4/1.3.8": {
-      "type": "package",
-      "serviceable": true,
-      "sha512": "sha512-LhwlPa7c1zs1OV2XadMtAWdImjLIsqFJPoRcIWAadSRn0Ri1DepK65UbWLPmt4riLqx2d40xjXRk0ogpqNtK7g==",
-      "path": "k4os.compression.lz4/1.3.8",
-      "hashPath": "k4os.compression.lz4.1.3.8.nupkg.sha512"
-    },
-    "K4os.Compression.LZ4.Streams/1.3.8": {
-      "type": "package",
-      "serviceable": true,
-      "sha512": "sha512-P15qr8dZAeo9GvYbUIPEYFQ0MEJ0i5iqr37wsYeRC3la2uCldOoeCa6to0CZ1taiwxIV+Mk8NGuZi+4iWivK9w==",
-      "path": "k4os.compression.lz4.streams/1.3.8",
-      "hashPath": "k4os.compression.lz4.streams.1.3.8.nupkg.sha512"
-    },
-    "K4os.Hash.xxHash/1.0.8": {
-      "type": "package",
-      "serviceable": true,
-      "sha512": "sha512-Wp2F7BamQ2Q/7Hk834nV9vRQapgcr8kgv9Jvfm8J3D0IhDqZMMl+a2yxUq5ltJitvXvQfB8W6K4F4fCbw/P6YQ==",
-      "path": "k4os.hash.xxhash/1.0.8",
-      "hashPath": "k4os.hash.xxhash.1.0.8.nupkg.sha512"
     },
     "Microsoft.Build.Framework/18.0.2": {
       "type": "package",
@@ -802,19 +633,19 @@
       "path": "microsoft.codeanalysis.workspaces.msbuild/5.0.0",
       "hashPath": "microsoft.codeanalysis.workspaces.msbuild.5.0.0.nupkg.sha512"
     },
-    "Microsoft.EntityFrameworkCore/10.0.2": {
+    "Microsoft.EntityFrameworkCore/10.0.11": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-d3+XKbLSHPCu3vwpXECoXcFbvGKmAhEeUmc1xy2czmuPnEF7rZN2HP5ZGMwCMbAKk4B01+nS4HixSMo2Vf/Y9g==",
-      "path": "microsoft.entityframeworkcore/10.0.2",
-      "hashPath": "microsoft.entityframeworkcore.10.0.2.nupkg.sha512"
+      "sha512": "sha512-VOSGU8en6HZJs8t7UMFN+9vGcRgVOOn6fA44Ngcg2NyvJ3P1KE94iAb0XzaVaGhXGtt+qaM/VtEn0/hzluQJeg==",
+      "path": "microsoft.entityframeworkcore/10.0.11",
+      "hashPath": "microsoft.entityframeworkcore.10.0.11.nupkg.sha512"
     },
-    "Microsoft.EntityFrameworkCore.Abstractions/10.0.2": {
+    "Microsoft.EntityFrameworkCore.Abstractions/10.0.11": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-BzAwIU5mYeOmnKbEXrkwx7feW2V+zUTrK/kRonSib94tjvc0/iRj2a4N6YGXRhTNjaFP3tvCMIDaX1vIFF6dkg==",
-      "path": "microsoft.entityframeworkcore.abstractions/10.0.2",
-      "hashPath": "microsoft.entityframeworkcore.abstractions.10.0.2.nupkg.sha512"
+      "sha512": "sha512-6auJR+9+9VunznKfH7WGrHMrnrmA0F7JZ22EXzwXvVhjfnbu9Xq7NSIWaOf3KJsOanM2qf5ajJ2JR5TlcPZTLA==",
+      "path": "microsoft.entityframeworkcore.abstractions/10.0.11",
+      "hashPath": "microsoft.entityframeworkcore.abstractions.10.0.11.nupkg.sha512"
     },
     "Microsoft.EntityFrameworkCore.Design/10.0.2": {
       "type": "package",
@@ -823,12 +654,12 @@
       "path": "microsoft.entityframeworkcore.design/10.0.2",
       "hashPath": "microsoft.entityframeworkcore.design.10.0.2.nupkg.sha512"
     },
-    "Microsoft.EntityFrameworkCore.Relational/10.0.2": {
+    "Microsoft.EntityFrameworkCore.Relational/10.0.11": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-1fUeyNmqDNfMogJ2ut7OKO57/WGjjkHMYeX51SpA3PwP7ftbx8g/Z3fbErD+1q14DILrqJfsszYsYhGssBRfDg==",
-      "path": "microsoft.entityframeworkcore.relational/10.0.2",
-      "hashPath": "microsoft.entityframeworkcore.relational.10.0.2.nupkg.sha512"
+      "sha512": "sha512-grznnTJgEYxaWpdKAsTzg6j+89jHgCXWYp+QGtlX5O92+w/VuhWM6JLPYb+uw8M9VhGUvOTsO76dYOy9vNPd5Q==",
+      "path": "microsoft.entityframeworkcore.relational/10.0.11",
+      "hashPath": "microsoft.entityframeworkcore.relational.10.0.11.nupkg.sha512"
     },
     "Microsoft.EntityFrameworkCore.Tools/10.0.2": {
       "type": "package",
@@ -865,6 +696,13 @@
       "path": "microsoft.win32.systemevents/6.0.0",
       "hashPath": "microsoft.win32.systemevents.6.0.0.nupkg.sha512"
     },
+    "Microting.EntityFrameworkCore.MySql/10.0.11": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-h8bAt0fSaASNkFKBLUToamz7ZfrXGqwoyp15NFblzrcC/wTJjIjkma593ArP40rm30wOMrywzToHah1oeh0GXg==",
+      "path": "microting.entityframeworkcore.mysql/10.0.11",
+      "hashPath": "microting.entityframeworkcore.mysql.10.0.11.nupkg.sha512"
+    },
     "Mollie.Api/4.20.0": {
       "type": "package",
       "serviceable": true,
@@ -879,19 +717,12 @@
       "path": "mono.texttemplating/3.0.0",
       "hashPath": "mono.texttemplating.3.0.0.nupkg.sha512"
     },
-    "MySql.Data/9.6.0": {
+    "MySqlConnector/2.6.2": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-jjCXNBxLLQHBcyYyOP4yp5jqljStH2qGFXXg3jBMdwYQk9ihpLH9BXoMyc/J3421pENBDjCf/eGi9Ow0Ib7LUA==",
-      "path": "mysql.data/9.6.0",
-      "hashPath": "mysql.data.9.6.0.nupkg.sha512"
-    },
-    "MySql.EntityFrameworkCore/10.0.1": {
-      "type": "package",
-      "serviceable": true,
-      "sha512": "sha512-6QMi+HjVvB/xOSbnvBJ+rDUyCk/TcKvney3SegUa+/FxZMDOpymsFJL0cuT8wAMp6XE5xh/qpovj36fQdI7nHw==",
-      "path": "mysql.entityframeworkcore/10.0.1",
-      "hashPath": "mysql.entityframeworkcore.10.0.1.nupkg.sha512"
+      "sha512": "sha512-dlTc/tsBa42szdvpj4nrHvQVUb0gsMwR9HT6J0Zz2OSqfP0CdYlGw+qQPqCpbnO97idfvclSjKYtM6y5QaBQaQ==",
+      "path": "mysqlconnector/2.6.2",
+      "hashPath": "mysqlconnector.2.6.2.nupkg.sha512"
     },
     "Newtonsoft.Json/13.0.3": {
       "type": "package",
@@ -970,47 +801,12 @@
       "path": "system.composition.typedparts/9.0.0",
       "hashPath": "system.composition.typedparts.9.0.0.nupkg.sha512"
     },
-    "System.Configuration.ConfigurationManager/8.0.0": {
-      "type": "package",
-      "serviceable": true,
-      "sha512": "sha512-JlYi9XVvIREURRUlGMr1F6vOFLk7YSY4p1vHo4kX3tQ0AGrjqlRWHDi66ImHhy6qwXBG3BJ6Y1QlYQ+Qz6Xgww==",
-      "path": "system.configuration.configurationmanager/8.0.0",
-      "hashPath": "system.configuration.configurationmanager.8.0.0.nupkg.sha512"
-    },
     "System.Drawing.Common/6.0.0": {
       "type": "package",
       "serviceable": true,
       "sha512": "sha512-NfuoKUiP2nUWwKZN6twGqXioIe1zVD0RIj2t976A+czLHr2nY454RwwXs6JU9Htc6mwqL6Dn/nEL3dpVf2jOhg==",
       "path": "system.drawing.common/6.0.0",
       "hashPath": "system.drawing.common.6.0.0.nupkg.sha512"
-    },
-    "System.Security.Cryptography.ProtectedData/8.0.0": {
-      "type": "package",
-      "serviceable": true,
-      "sha512": "sha512-+TUFINV2q2ifyXauQXRwy4CiBhqvDEDZeVJU7qfxya4aRYOKzVBpN+4acx25VcPB9ywUN6C0n8drWl110PhZEg==",
-      "path": "system.security.cryptography.protecteddata/8.0.0",
-      "hashPath": "system.security.cryptography.protecteddata.8.0.0.nupkg.sha512"
-    },
-    "System.Security.Permissions/8.0.0": {
-      "type": "package",
-      "serviceable": true,
-      "sha512": "sha512-v/BBylw7XevuAsHXoX9dDUUfmBIcUf7Lkz8K3ZXIKz3YRKpw8YftpSir4n4e/jDTKFoaK37AsC3xnk+GNFI1Ow==",
-      "path": "system.security.permissions/8.0.0",
-      "hashPath": "system.security.permissions.8.0.0.nupkg.sha512"
-    },
-    "System.Windows.Extensions/8.0.0": {
-      "type": "package",
-      "serviceable": true,
-      "sha512": "sha512-Obg3a90MkOw9mYKxrardLpY2u0axDMrSmy4JCdq2cYbelM2cUwmUir5Bomvd1yxmPL9h5LVHU1tuKBZpUjfASg==",
-      "path": "system.windows.extensions/8.0.0",
-      "hashPath": "system.windows.extensions.8.0.0.nupkg.sha512"
-    },
-    "ZstdSharp.Port/0.8.6": {
-      "type": "package",
-      "serviceable": true,
-      "sha512": "sha512-iP4jVLQoQmUjMU88g1WObiNr6YKZGvh4aOXn3yOJsHqZsflwRsxZPcIBvNXgjXO3vQKSLctXGLTpcBPLnWPS8A==",
-      "path": "zstdsharp.port/0.8.6",
-      "hashPath": "zstdsharp.port.0.8.6.nupkg.sha512"
     }
   }
 }

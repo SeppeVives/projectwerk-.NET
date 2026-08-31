@@ -1,8 +1,9 @@
 ﻿using bestelplatform.Data.bestelplatform;
+using bestelplatform.DTOs;
+using bestelplatform.Models.Enums;
 using bestelplatform.Models.Views;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using Mysqlx;
 using QRCoder;
 
 namespace bestelplatform.Controllers
@@ -16,11 +17,14 @@ namespace bestelplatform.Controllers
         {
             _bestelplatformContext = bestelplatformContext;
         }
+
+        // Gebruikersbheer
+
         [Route("")]
         [Route("gebruiksbeheer")]
         public IActionResult GebruiksBeheer()
         {
-            return View("GebruikersBeheer");
+            return View("GebruikersBeheerPagina");
         }
 
         [HttpGet("add/user")]
@@ -89,14 +93,14 @@ namespace bestelplatform.Controllers
             return Ok(roles);
         }
 
-        public class AddRolePostBody()
+        public class AddUserRolePostBody()
         {
             public int UserId { get; set; }
             public string NewRole { get; set; }
         }
 
         [HttpPost("add/user/role")]
-        public async Task<IActionResult> AddUserRole([FromBody] AddRolePostBody rolePostBody)
+        public async Task<IActionResult> AddUserRole([FromBody] AddUserRolePostBody rolePostBody)
         {
             var newRole = await _bestelplatformContext.Rollens
                                     .FirstOrDefaultAsync(row => row.Naam == rolePostBody.NewRole);
@@ -127,6 +131,84 @@ namespace bestelplatform.Controllers
                                   .FirstOrDefaultAsync(row => row.Id == userId);
 
             gebruiker.Rols.Remove(toBeDeletedRole);
+            await _bestelplatformContext.SaveChangesAsync();
+
+            return Ok();
+        }
+
+        // Assortimentbeheer
+
+        [Route("Assortimentbeheer")]
+        public IActionResult Assortimentbeheer()
+        {
+            return View("AssortimentBeheerPagina");
+        }
+
+        [HttpGet("load/products")]
+        public async Task<IActionResult> LoadProducts()
+        {
+            var products = await _bestelplatformContext.Productdetails
+                                 .GroupBy(row => row.ProductId)
+                                 .Select(g => g.OrderByDescending(g => g.Tijdstip).FirstOrDefault())
+                                 .ToListAsync();
+            return Ok(products);
+        }
+
+        [HttpGet("get/product/types")]
+        public async Task<IActionResult> GetProductTypes()
+        {
+            var productTypes = Enum.GetNames<ProductEnum>().ToList();
+            
+            return Ok(productTypes);
+        }
+
+        [HttpPost("add/product")]
+        public async Task<IActionResult> AddProduct([FromBody] ProductdetailsDto product)
+        {
+            var newProduct = new Producten()
+            {
+                Id = 0
+            };
+            _bestelplatformContext.Productens.Add(newProduct);
+            await _bestelplatformContext.SaveChangesAsync();
+
+            var newProductDetail = new Productdetail()
+            {
+                Naam = product.ProductName,
+                Prijs = product.ProductPrice,
+                Producttype = product.ProductType,
+                ProductId = newProduct.Id
+            };
+            _bestelplatformContext.Productdetails.Add(newProductDetail);
+            await _bestelplatformContext.SaveChangesAsync();
+
+            return Ok();
+        }
+
+        [HttpDelete("delete/product/{productID}")]
+        public async Task<IActionResult> DeleteProduct(int productID)
+        {
+            var productToDelete = await _bestelplatformContext.Productens
+                                        .Where(row => row.Id == productID)
+                                        .FirstOrDefaultAsync();
+            _bestelplatformContext.Productens.Remove(productToDelete);
+            await _bestelplatformContext.SaveChangesAsync();
+
+            return Ok();
+        }
+
+        [HttpPut("edit/product/")]
+        public async Task<IActionResult> EditProduct([FromBody] ProductdetailsDto updatedProduct)
+        {
+            var newProductDetail = new Productdetail
+            {
+                ProductId = updatedProduct.ProductID,
+                Naam = updatedProduct.ProductName,
+                Prijs = updatedProduct.ProductPrice,
+                Producttype = updatedProduct.ProductType,
+                Tijdstip = DateTime.Now
+            };
+            _bestelplatformContext.Productdetails.Add(newProductDetail);
             await _bestelplatformContext.SaveChangesAsync();
 
             return Ok();

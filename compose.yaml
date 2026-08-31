@@ -22,15 +22,15 @@ services:
     depends_on:
      - dotnet-bestelplatform-db
     restart: unless-stopped
-  # dotnet-bestelplatform-app:
-  #   container_name: dotnet-bestelplatform-app
-  #   build:
-  #     context: ./bestelplatform
-  #   ports:
-  #     - 5005:8080
-  #   depends_on:
-  #     - dotnet-bestelplatform-db
-  #   environment:
-  #     - ASPNETCORE_ENVIRONMENT=Development
-  #     - ConnectionStrings__DefaultConnection=server=dotnet-bestelplatform-db;port=3306;uid=root;pwd=root;database=bestelplatformDB
-  #   restart: unless-stopped
+  dotnet-bestelplatform-app:
+    container_name: dotnet-bestelplatform-app
+    build:
+      context: ./bestelplatform
+    ports:
+      - 5005:8080
+    depends_on:
+      - dotnet-bestelplatform-db
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ConnectionStrings__DefaultConnection=server=dotnet-bestelplatform-db;port=3306;uid=root;pwd=root;database=bestelplatformDB
+    restart: unless-stopped
